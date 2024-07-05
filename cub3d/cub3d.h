@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 14:19:23 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/05 14:25:20 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@
 
 /*------------- Structures ---------------*/
 
-typedef struct	s_data {
-	t_map	*map;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 typedef struct	s_map
 {
@@ -59,6 +51,14 @@ typedef struct	s_map
 	char	*c;
 }				t_map;
 
+typedef struct	s_data {
+	t_map	*map;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 /*------------- Error functions ---------------*/
 
