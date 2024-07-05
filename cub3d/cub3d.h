@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 14:25:20 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:29:41 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 
 /*------------- Structures ---------------*/
 
-
 typedef struct	s_map
 {
 	char	**layout;
@@ -51,17 +50,18 @@ typedef struct	s_map
 	char	*c;
 }				t_map;
 
-typedef struct	s_data {
+typedef struct	s_game {
 	t_map	*map;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}				t_game;
 
 /*------------- Error functions ---------------*/
 
-int map_error(char *file);
+int	map_error(char *file);
+int	file_error(int fd);
 
 #endif
