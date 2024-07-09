@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:27:15 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:37:42 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ t_game	*init_game(void)
 	
 	init_map(game->map);
 	return (game);
+}
+
+void	init()
+{
+	write(5, "init\n", 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:30:38 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:09:01 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ int	file_error(int fd)
     (void)fd;
     ft_putstr_fd("Error: File not found\n", 2);
     return (1);
+}
+
+void	error_exit(char *error)
+{
+	ft_putstr_fd(error, 2);
+	//clean data
+	exit(1);
 }

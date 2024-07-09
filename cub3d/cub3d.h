@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:29:41 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:33:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
+# include "libs/minilibx-linux/mlx.h"
 
 
 /*------------- Structures ---------------*/
@@ -63,5 +64,9 @@ typedef struct	s_game {
 
 int	map_error(char *file);
 int	file_error(int fd);
+void	init();
+void	parse_data(char *argv);
+void	start_game();
+void	error_exit(char *error);
 
 #endif
