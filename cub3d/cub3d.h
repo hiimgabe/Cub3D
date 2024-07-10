@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/09 14:33:21 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/10 15:34:18 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ typedef struct	s_game {
 
 /*------------- Error functions ---------------*/
 
+t_game	*game(void);
+
 int	map_error(char *file);
 int	file_error(int fd);
-void	init();
-void	parse_data(char *argv);
+int	check_extension(char *str);
+int	parse_data(char *argv);
+void	init_game(void);
 void	start_game();
 void	error_exit(char *error);
 
