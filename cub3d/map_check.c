@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 10:47:26 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:07:32 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,17 @@ char	**get_map(char *file)
 	return (map);
 }
 
+void print_map(char **layout)
+{
+    int i = 0;
+
+    while (layout[i])
+    {
+        printf("%s", layout[i]);
+        i++;
+    }
+}
+
 int valid_map(t_game *game, char *file)
 {
     game->map->layout = get_map(file);
@@ -93,7 +104,9 @@ int valid_map(t_game *game, char *file)
         ft_putstr_fd("Error: invalid map.\n", 2);
         return (0);
     }
-	//Botar condicoes de validacao de mapa aqui
-    ft_putstr_fd("Yeii valid map.\n", 2);
+	if (!map_conditions(game->map->layout))
+		print_map(game->map->layout);
+	else
+		ft_putstr_fd("Error: map is not ok.\n", 2);
     return (1);
 }

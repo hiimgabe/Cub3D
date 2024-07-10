@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 10:41:10 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:20:19 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,14 @@ char *copy_map_line(char *line, int length);
 char **save_map(char **map, int fd);
 char	**get_map(char *file);
 int valid_map(t_game *game, char *file);
+int	map_conditions(char **layout);
+
 
 /*------------- Free functions ---------------*/
 void free_map(t_map *map);
 void free_game(t_game *game);
+
+/*------------- Debugging functions ---------------*/
+void print_map(char **layout);
 
 #endif
