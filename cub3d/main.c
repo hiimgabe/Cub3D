@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:30:15 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:39:04 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ int file_check(char *file, char *ext, int fd)
 int	main(int argc, char **argv)
 {
 	int		fd;
-	void	*mlx;
-	void	*mlx_win;
-	t_game	img;
+	t_game	*game;
 
 	fd = 0;
 	if (argc != 2)
@@ -84,18 +82,18 @@ int	main(int argc, char **argv)
 // This is where we check the file, which should end in ".cub"
 	if (!file_check(argv[1], ".cub", fd))
 		return (1);
-	
-// Here is where we will begin the process of parsing and validating the map
-/* 	if (!valid_map(argv[1]), fd)
-		return (1); */
+		
+	game = init_game();
 
-// This is just random stuff to create a window if every check is successfull 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 256, 256, "'Tis a window'");
-	img.img = mlx_new_image(mlx, 256, 256);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 5*5, 5*5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+// This is where we check the map
+// Im only checking the map, as if there was nothing else on the .cub file for now
+	
+	if (!valid_map(game, argv[1]))
+	{
+		free_game(game);
+		return (1);
+	}
+	printf("Exiting successfull\n");
+	free_game(game);
+	return (0);
 }

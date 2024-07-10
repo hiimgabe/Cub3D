@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:32:37 by pmagalha         ###   ########.fr       */
+/*   Created: 2024/07/10 10:22:08 by pmagalha          #+#    #+#             */
+/*   Updated: 2024/07/10 10:25:11 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// File for eventual error messages we may need
-// Eventually we may condense all of them in one single function
-
-int	map_error(char *file)
+void free_map(t_map *map)
 {
-	ft_putstr_fd("Error: ", 2);
-    ft_putstr_fd(file, 2);
-    ft_putstr_fd(" is not a valid file.\n", 2);
-    return (1);
+    int i = 0;
+
+    if (map->layout)
+    {
+        while (map->layout[i])
+        {
+            free(map->layout[i]);
+            i++;
+        }
+        free(map->layout);
+    }
 }
 
-int	file_error(int fd)
+void free_game(t_game *game)
 {
-    (void)fd;
-    ft_putstr_fd("Error: File not found\n", 2);
-    return (1);
+    if (game)
+    {
+        if (game->map)
+        {
+            free_map(game->map);
+            free(game->map);
+        }
+        free(game);
+    }
 }

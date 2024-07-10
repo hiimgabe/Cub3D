@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:29:41 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:41:10 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,26 @@ typedef struct	s_game {
 	int		endian;
 }				t_game;
 
+/*------------- Init functions ---------------*/
+
+t_map	*init_map(t_map *map);
+t_game	*init_game(void);
+
 /*------------- Error functions ---------------*/
 
 int	map_error(char *file);
 int	file_error(int fd);
+
+/*-------- Map validation functions ----------*/
+
+int map_lines(char *file);
+char *copy_map_line(char *line, int length);
+char **save_map(char **map, int fd);
+char	**get_map(char *file);
+int valid_map(t_game *game, char *file);
+
+/*------------- Free functions ---------------*/
+void free_map(t_map *map);
+void free_game(t_game *game);
 
 #endif
