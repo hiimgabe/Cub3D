@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/09 14:38:30 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:28:13 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,66 @@ int file_check(char *file, char *ext, int fd)
 	return (1);
 }
 
-int	map_validation(char *argv)
+char	*trim_line(char *line)
 {
-	if (!file_check(argv, ".cub", 0))
-		return (1);
+	int		i;
+	int		len;
+	char	*trim;
+
+	i = 0;
+	len = ft_strlen(line);
+	while (line[i] != '.')
+		i++;
+	trim = ft_substr(line, i, len - i);
+	return (trim);
+}
+
+// Not sure if it is supposed to be a certain order but for now the 
+// order is SO(0) -> NO(1) -> WE(2) -> EA(3) 
+void	fill_texture(char *texture, int index)
+{
+	if (!texture)
+		return ;
+	if (index == 0)
+		game()->map->so = texture;
+	else if (index == 1)
+		game()->map->no = texture;
+	else if (index == 2)
+		game()->map->we = texture;
+	else if (index == 3)
+		game()->map->ea = texture;
+}
+
+static int	textures_validation(char *map)
+{
+	int		fd;
+	int		xpm_cnt;
+	char	*line;
+	char	*extension;
+
+	fd = open(map, O_RDONLY);
+	xpm_cnt = -1;
+	while(1)
+	{
+		line = get_next_line(fd);
+		line = trim_line(line);
+		extension = ft_substr(line, ft_strlen(line) - 5, 4);
+		if (ft_strncmp(".xpm", extension, 4))
+			return (error_exit("Wrong file extention.\n"), 1);
+		else
+			xpm_cnt++;
+		fill_texture(line, xpm_cnt);
+		if (xpm_cnt == 3)
+			break ;
+	}
 	return (0);
 }
 
-void	parse_data(char *argv)
+int	parse_data(char *argv)
 {
-	if (map_validation(argv))
-		error_exit("ERROR");
+	if (textures_validation(argv))
+		return (error_exit("Textures validation error.\n"), 1);
+	//if (map_validation(argv))
+	//	return (error_exit("Map validation error"), 1);
+	return (0);
 }
