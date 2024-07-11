@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:10:49 by gabe              #+#    #+#             */
-/*   Updated: 2024/07/10 18:28:34 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/11 16:45:15 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ int	check_extension(char *str)
 		return (error_exit("Invalid file extension.\n"), 1);
 	return (0);
 }
+

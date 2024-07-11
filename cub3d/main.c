@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 15:34:06 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/11 16:45:48 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,30 @@ t_game	*game(void)
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		return (ft_putstr_fd("Error: wrong number of arguments.\n", 2), 1);
+	int		fd;
 
+	fd = 0;
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error: no map file provided.\n", 2);
+		return (1);
+	}
+	
+	// This is where we check the file extension
+	if (!file_check(argv[1], ".cub", fd))
+	{
+		close(fd);
+		return (1);
+	}
+	
+	// This is where we init		
 	init_game();
-	if (parse_data(argv[1]))
-		return (error_exit("Parsing error.\n"), EXIT_FAILURE);
-	start_game();
+
+	// This where we parse 
+	if (!parse_data(argv[1]))
+		free_game();
+		
+	printf("Exiting successfull\n");
+	free_game();
 	return (EXIT_SUCCESS);
 }
