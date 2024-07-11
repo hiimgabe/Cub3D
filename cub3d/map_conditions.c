@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 16:03:40 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:26:42 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	invalid_characters(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (0);
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0'
@@ -32,6 +34,8 @@ static int	top_bottom_walls(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (ft_putstr_fd("Error: Empty map\n", 2), 0);
 	while (line[i] && line[i] != '\n')
     {
         if (line[i] != '1' && line[i] != ' ')
@@ -48,6 +52,8 @@ static int	invalid_walls(char **layout)
 	
 	i = 0;
 	j = 0;
+	if (!game()->map->layout)
+		return (0);
 	if (i > 1 && ft_strlen(layout[i]) > ft_strlen(layout[i - 1])
 		&& j >= ft_strlen(layout[i - 1]) && layout[i][j] && layout[i][j] != '1')
 		return (0);
@@ -67,6 +73,8 @@ static int	invalid_borders(char *line)
 
 	i = 0;
 	j = 0;
+	if (!line)
+		return (0);
 	while (line[i] == ' ')
 		i++;
 	if (line[i] != '1')
@@ -84,6 +92,8 @@ int map_conditions(char **layout)
     int x;
 	
 	x = 0;
+	if (!game()->map->layout)
+		return (0);
 	if (!top_bottom_walls(layout[x]))
 		return (ft_putstr_fd("Error: invalid top wall elements.\n", 2), 1);
 	if (!invalid_walls(layout))

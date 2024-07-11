@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 10:42:12 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:41:05 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,14 @@ t_map	*init_map(t_map *map)
 	return (map);
 }
 
-t_game	*init_game(void)
-{
-	t_game	*game;
-	
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (ft_putstr_fd("Error: game memory allocation failed.\n", 2), NULL);
-	game->map = malloc(sizeof(t_map));
-	if (!game->map)
+void	init_game(void)
+{	
+	game()->map = ft_calloc(1, sizeof(t_map));
+	if (!game()->map)
 	{
-		free_game(game);
-		return (ft_putstr_fd("Error: map memory allocation failed.\n", 2), NULL);
+		free_game();
+		ft_putstr_fd("Error: map memory allocation failed.\n", 2);
+		exit (1);
 	}
-	
-	init_map(game->map);
-	return (game);
+	init_map(game()->map);
 }

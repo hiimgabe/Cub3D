@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/05 15:32:37 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:34:52 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ int	file_error(int fd)
     (void)fd;
     ft_putstr_fd("Error: File not found\n", 2);
     return (1);
+}
+
+void	error_exit(char *error)
+{
+	ft_putstr_fd(error, 2);
+    free_game();
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 13:20:19 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:33:36 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
-
+# include "libs/minilibx-linux/mlx.h"
 
 /*------------- Structures ---------------*/
 
@@ -61,13 +61,20 @@ typedef struct	s_game {
 
 /*------------- Init functions ---------------*/
 
+t_game	*game(void);
 t_map	*init_map(t_map *map);
-t_game	*init_game(void);
+void	init_game(void);
+
+/*------------- Parsing functions ---------------*/
+
+int	parse_data(char *argv);
+int file_check(char *file, char *ext, int fd);
 
 /*------------- Error functions ---------------*/
 
 int	map_error(char *file);
 int	file_error(int fd);
+void	error_exit(char *error);
 
 /*-------- Map validation functions ----------*/
 
@@ -75,13 +82,16 @@ int map_lines(char *file);
 char *copy_map_line(char *line, int length);
 char **save_map(char **map, int fd);
 char	**get_map(char *file);
-int valid_map(t_game *game, char *file);
+int valid_map(char *file);
 int	map_conditions(char **layout);
 
+/*------------- Extention validation functions ---------------*/
+
+int	check_extension(char *str);
 
 /*------------- Free functions ---------------*/
 void free_map(t_map *map);
-void free_game(t_game *game);
+void free_game();
 
 /*------------- Debugging functions ---------------*/
 void print_map(char **layout);

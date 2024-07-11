@@ -6,7 +6,7 @@
 /*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/10 13:07:32 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:44:03 by pmagalha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,45 @@ int map_lines(char *file)
     }
     free(line);
     close(fd);
-    return lines;
+    return (lines);
 }
 
 char *copy_map_line(char *line, int length)
 {
-    char *new_line = ft_strndup(line, length);
+    char *new_line;
+    
+    new_line = ft_strndup(line, length);
     return (new_line);
+}
+
+bool    map_start(char *line)
+{
+    int i;
+
+    i = 0;
+    while (line[i] == ' ')
+        i++;
+    if (line[i] == '1')
+        return (true);
+    return (false);
 }
 
 char **save_map(char **map, int fd)
 {
     int     i;
+    int     j;
     char    *line;
+    bool    start;
 
+    start = false;
     line = get_next_line(fd);
     i = 0;
+    j = 0;
     while (line)
     {
-        if (line[0] != '\0' && line[0] != '\n')
+        if (!start && map_start(line))
+            start = true;
+        if (start && line[0] != '\0' && line[0] != '\n')
             map[i++] = copy_map_line(line, ft_strlen(line));
         free(line);
         line = get_next_line(fd);
@@ -94,19 +114,20 @@ void print_map(char **layout)
         printf("%s", layout[i]);
         i++;
     }
+    printf("\n");
 }
 
-int valid_map(t_game *game, char *file)
+int valid_map(char *file)
 {
-    game->map->layout = get_map(file);
-    if (!game->map->layout)
+    game()->map->layout = get_map(file);
+    if (!game()->map->layout)
     {
         ft_putstr_fd("Error: invalid map.\n", 2);
-        return (0);
+        return (1);
     }
-	if (!map_conditions(game->map->layout))
-		print_map(game->map->layout);
+	if (!map_conditions(game()->map->layout))
+		print_map(game()->map->layout);
 	else
-		ft_putstr_fd("Error: map is not ok.\n", 2);
-    return (1);
+		return (ft_putstr_fd("Error: map is not ok.\n", 2), 1);
+    return (0);
 }
