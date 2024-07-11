@@ -40,3 +40,4 @@ int	check_extension(char *str)
 		return (error_exit("Invalid file extension.\n"), 1);
 	return (0);
 }
+

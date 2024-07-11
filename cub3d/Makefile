@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+         #
+#    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
 #    Updated: 2024/07/11 13:49:11 by pmagalha         ###   ########.fr        #

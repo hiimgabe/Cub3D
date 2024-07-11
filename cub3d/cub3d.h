@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
 /*   Updated: 2024/07/11 16:33:36 by pmagalha         ###   ########.fr       */
@@ -72,6 +72,8 @@ int file_check(char *file, char *ext, int fd);
 
 /*------------- Error functions ---------------*/
 
+t_game	*game(void);
+
 int	map_error(char *file);
 int	file_error(int fd);
 void	error_exit(char *error);
@@ -95,5 +97,10 @@ void free_game();
 
 /*------------- Debugging functions ---------------*/
 void print_map(char **layout);
+int	check_extension(char *str);
+int	parse_data(char *argv);
+void	init_game(void);
+void	start_game();
+void	error_exit(char *error);
 
 #endif

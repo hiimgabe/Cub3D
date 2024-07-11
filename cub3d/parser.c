@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
 /*   Updated: 2024/07/11 16:45:00 by pmagalha         ###   ########.fr       */
@@ -102,6 +102,5 @@ int	parse_data(char *argv)
 	
 	if (valid_map(argv))
 		return (error_exit("Map validation error\n"), 1);
-	
 	return (0);
 }
