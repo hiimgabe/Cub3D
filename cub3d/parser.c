@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:45:00 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/12 08:44:04 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,13 @@ char	*trim_line(char *line)
 
 	i = 0;
 	len = ft_strlen(line);
-	while (line[i] != '.')
-		i++;
+	while (line[i])
+	{
+		if (line[i] != '.')
+			i++;
+		else
+			break ;
+	}
 	trim = ft_substr(line, i, len - i);
 	return (trim);
 }

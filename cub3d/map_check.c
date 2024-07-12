@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:44:03 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/12 08:32:20 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int map_lines(char *file)
     int     lines;
     char    *line;
 
-	line = NULL;
     fd = open(file, O_RDONLY);
     if (fd < 0)
-        return 0;
-    
+        return (0);
     lines = 0;
-    while (get_next_line(fd) > 0)
+    while (1)
     {
-        free(line);
+		line = get_next_line(fd);
+		if (!line)
+			break ;
         lines++;
     }
     free(line);
@@ -57,14 +57,12 @@ bool    map_start(char *line)
 char **save_map(char **map, int fd)
 {
     int     i;
-    int     j;
     char    *line;
     bool    start;
 
     start = false;
     line = get_next_line(fd);
     i = 0;
-    j = 0;
     while (line)
     {
         if (!start && map_start(line))
