@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/12 08:44:04 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/12 09:41:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*trim_line(char *line)
 			break ;
 	}
 	trim = ft_substr(line, i, len - i);
+	free(line);
 	return (trim);
 }
 
@@ -92,11 +93,15 @@ static int	textures_validation(char *map)
 		if (ft_strncmp(".xpm", extension, 4))
 			return (error_exit("Wrong file extention.\n"), 1);
 		else
+		{
 			xpm_cnt++;
+			free(extension);
+		}
 		fill_texture(line, xpm_cnt);
 		if (xpm_cnt == 3)
 			break ;
 	}
+	close(fd);
 	return (0);
 }
 

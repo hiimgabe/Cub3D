@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/12 08:32:20 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/12 09:41:58 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int map_lines(char *file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		free(line);
         lines++;
     }
     free(line);
