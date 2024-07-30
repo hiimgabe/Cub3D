@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_validation.c                              :+:      :+:    :+:   */
+/*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <pmagalha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:10:49 by gabe              #+#    #+#             */
-/*   Updated: 2024/07/11 16:45:15 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/30 20:01:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,8 @@ int	check_extension(char *str)
 	return (0);
 }
 
+int	check_color(char *argv)
+{
+	
+	return (EXIT_SUCCESS);
+}

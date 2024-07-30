@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 11:53:05 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/30 20:00:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,10 @@ static int	textures_validation(char *map)
 int	parse_data(char *argv)
 {
  	if (textures_validation(argv))
-		return (error_exit("Textures validation error.\n"), 1);
-	
+		return (error_exit("Textures validation error.\n"), EXIT_FAILURE);
+	if (check_color(argv))
+		return (error_exit("Ceiling/Floor validation error.\n"), EXIT_FAILURE);
 	if (valid_map(argv))
-		return (error_exit("Map validation error\n"), 1);
-	return (0);
+		return (error_exit("Map validation error\n"), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
