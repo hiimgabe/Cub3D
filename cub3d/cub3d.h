@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 14:34:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/30 19:45:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,22 @@ typedef struct	s_map
 	char	*c;
 }				t_map;
 
+typedef	struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}				t_img;
+
+
 typedef struct	s_game {
 	t_map	*map;
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	t_img	screen_buffer;
 }				t_game;
 
 /*------------- Init functions ---------------*/

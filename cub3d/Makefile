@@ -6,7 +6,7 @@
 #    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/07/30 11:59:51 by gabe             ###   ########.fr        #
+#    Updated: 2024/07/30 19:50:17 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #                                  SOURCE FILES                                #
 ################################################################################
 
-SRC = main.c error.c init.c parser.c free.c map_check.c map_conditions.c textures_validation.c game.c\
+SRC = main.c error.c init.c parser.c free.c map_check.c map_conditions.c textures_validation.c game.c textures.c\
 
 OBJS = $(SRC:.c=.o)
 DEPS = $(LIBFT_DIR)/libft.a
