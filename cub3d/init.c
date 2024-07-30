@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:41:05 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:39:32 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ void	init_game(void)
 		exit (1);
 	}
 	init_map(game()->map);
+}
+
+void	init_mlx()
+{
+	game()->mlx = mlx_init();
+	game()->mlx_win = mlx_new_window(game()->mlx, 800, 800, "CUB3D");
 }

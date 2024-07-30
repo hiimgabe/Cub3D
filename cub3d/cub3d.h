@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:33:36 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/30 14:34:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct	s_map
 
 typedef struct	s_game {
 	t_map	*map;
+	void	*mlx;
+	void	*mlx_win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -64,6 +66,7 @@ typedef struct	s_game {
 t_game	*game(void);
 t_map	*init_map(t_map *map);
 void	init_game(void);
+void	init_mlx();
 
 /*------------- Parsing functions ---------------*/
 
@@ -100,7 +103,9 @@ void print_map(char **layout);
 int	check_extension(char *str);
 int	parse_data(char *argv);
 void	init_game(void);
-void	start_game();
 void	error_exit(char *error);
+
+
+void	start_game();
 
 #endif
