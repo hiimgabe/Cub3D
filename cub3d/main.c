@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:45:48 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/30 11:34:57 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(int argc, char **argv)
 	}
 	
 	// This is where we check the file extension
-	if (!file_check(argv[1], ".cub", fd))
+	if (file_check(argv[1], ".cub", fd))
 	{
 		close(fd);
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	
 	// This is where we init		

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/12 09:41:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/07/30 11:53:05 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ int file_check(char *file, char *ext, int fd)
 	i = file_len - ext_len;
     if (strcmp(file + i, ext) != 0 || (i > 0 && file[i - 1] == '.') 
 		|| dot_count != 1 || file_len < ext_len)
-		return (map_error(file), 0);
+		return (map_error(file), EXIT_FAILURE);
 	if (fd < 0)
-		return (file_error(fd), 0);
-	
-	return (1);
+		return (file_error(fd), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 char	*trim_line(char *line)
