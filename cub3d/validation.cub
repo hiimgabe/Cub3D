@@ -1,9 +1,9 @@
-SO ./assets/textures/mossy.xpm
-NO ./assets/textures/mossy.xpm
-WE ./assets/textures/mossy.xpm
-EA ./assets/textures/mossy.xpm
+SO ./assets/textures/so.xpm
+NO ./assets/textures/no.xpm
+WE ./assets/textures/we.xpm
+EA ./assets/textures/ea.xpmsadsad
 
-F 55,53,10
+F 55,53,1022
 C 80,80,4
 
 1111111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 19:45:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/05 10:13:26 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char **save_map(char **map, int fd);
 char	**get_map(char *file);
 int valid_map(char *file);
 int	map_conditions(char **layout);
+void	parse_map_textures(char *line);
 
 /*------------- Extention validation functions ---------------*/
 
@@ -112,6 +113,9 @@ int	parse_data(char *argv);
 void	init_game(void);
 void	error_exit(char *error);
 
+/*----------------- utils -------------------*/
+int	is_space(char c);
+int	floor_ceiling_valid(char *str);
 
 void	start_game();
 

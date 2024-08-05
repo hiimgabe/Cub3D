@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/08/05 11:20:12 by gabe             ###   ########.fr       */
+/*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
+/*   Updated: 2024/08/01 10:13:47 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+int	is_space(char c)
 {
-	char	*dst;
+	return (c == 32 || (c >= 9 && c <= 13));
+}
 
-	dst = game->addr + (y * game->line_length + x * (game->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
-
-void	start_game()
+int	is_number(char c)
 {
-	// start mlx
-	init_mlx();
-	// load textures
-	//load_textures();
+	return (c >= 48 && c <= 57);
 }

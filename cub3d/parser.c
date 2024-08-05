@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 20:00:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/05 11:10:56 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,77 +39,30 @@ int file_check(char *file, char *ext, int fd)
 	return (EXIT_SUCCESS);
 }
 
-char	*trim_line(char *line)
-{
-	int		i;
-	int		len;
-	char	*trim;
-
-	i = 0;
-	len = ft_strlen(line);
-	while (line[i])
-	{
-		if (line[i] != '.')
-			i++;
-		else
-			break ;
-	}
-	trim = ft_substr(line, i, len - i);
-	free(line);
-	return (trim);
-}
-
-// Not sure if it is supposed to be a certain order but for now the 
-// order is SO(0) -> NO(1) -> WE(2) -> EA(3) 
-void	fill_texture(char *texture, int index)
-{
-	if (!texture)
-		return ;
-	if (index == 0)
-		game()->map->so = texture;
-	else if (index == 1)
-		game()->map->no = texture;
-	else if (index == 2)
-		game()->map->we = texture;
-	else if (index == 3)
-		game()->map->ea = texture;
-}
-
 static int	textures_validation(char *map)
 {
 	int		fd;
-	int		xpm_cnt;
 	char	*line;
-	char	*extension;
 
 	fd = open(map, O_RDONLY);
-	xpm_cnt = -1;
-	while(1)
+	if (fd < 0)
+		return (error_exit("Invalid map file.\n"), EXIT_FAILURE);
+	line = get_next_line(fd);
+	while (line)
 	{
+		parse_map_textures(line);
+		if (line)
+			free(line);
 		line = get_next_line(fd);
-		line = trim_line(line);
-		extension = ft_substr(line, ft_strlen(line) - 5, 4);
-		if (ft_strncmp(".xpm", extension, 4))
-			return (error_exit("Wrong file extention.\n"), 1);
-		else
-		{
-			xpm_cnt++;
-			free(extension);
-		}
-		fill_texture(line, xpm_cnt);
-		if (xpm_cnt == 3)
-			break ;
 	}
-	close(fd);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_data(char *argv)
 {
  	if (textures_validation(argv))
-		return (error_exit("Textures validation error.\n"), EXIT_FAILURE);
-	if (check_color(argv))
-		return (error_exit("Ceiling/Floor validation error.\n"), EXIT_FAILURE);
+		return (error_exit("Invalid textures.\n"), EXIT_FAILURE);
+	printf("%s\n%s\n%s\n%s\n%s\n%s\n", game()->map->so, game()->map->no, game()->map->we, game()->map->ea, game()->map->f, game()->map->c);
 	if (valid_map(argv))
 		return (error_exit("Map validation error\n"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);

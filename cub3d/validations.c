@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:10:49 by gabe              #+#    #+#             */
-/*   Updated: 2024/07/30 20:01:53 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/01 10:21:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ int	check_extension(char *str)
 		i++; 
 	}
 	if (extension_valid(extension))
-		return (error_exit("Invalid file extension.\n"), 1);
-	return (0);
-}
-
-int	check_color(char *argv)
-{
-	
+		return (error_exit("Invalid file extension.\n"),EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
+/*int	floor_ceiling_valid(char *str)
+{
+	
+}*/
