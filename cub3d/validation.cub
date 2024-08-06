@@ -1,9 +1,10 @@
+
 SO ./assets/textures/so.xpm
 NO ./assets/textures/no.xpm
 WE ./assets/textures/we.xpm
-EA ./assets/textures/ea.xpmsadsad
+EA ./assets/textures/ea.xpm
 
-F 55,53,1022
+F 55,51,12
 C 80,80,4
 
 1111111111111111111111111

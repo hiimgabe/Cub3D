@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/08/05 10:13:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/06 15:00:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	parse_map_textures(char *line);
 
 /*------------- Extention validation functions ---------------*/
 
-int	check_extension(char *str);
 
 /*------------- Free functions ---------------*/
 void free_map(t_map *map);
@@ -108,14 +107,15 @@ void free_game();
 
 /*------------- Debugging functions ---------------*/
 void print_map(char **layout);
-int	check_extension(char *str);
 int	parse_data(char *argv);
 void	init_game(void);
 void	error_exit(char *error);
 
 /*----------------- utils -------------------*/
 int	is_space(char c);
-int	floor_ceiling_valid(char *str);
+int	check_xpm();
+int	check_order();
+int	check_colors();
 
 void	start_game();
 

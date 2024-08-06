@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/08/05 11:10:56 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/06 15:00:45 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,12 @@ static int	textures_validation(char *map)
 		parse_map_textures(line);
 		if (line)
 			free(line);
+		if (check_order())
+			return (error_exit("Make sure textures and colors exist and are in the correct order.\nTextures order: SO->NO->WE->EA->F->C\n"), EXIT_FAILURE);
 		line = get_next_line(fd);
 	}
+	if (check_xpm() || check_colors())
+		return (error_exit("Make sure textures files and colors exist in the provided file and are in the correct format(XPM for textures and RGB for colors).\n"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
