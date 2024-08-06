@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/08/05 11:20:12 by gabe             ###   ########.fr       */
+/*   Created: 2024/07/30 19:49:30 by gabe              #+#    #+#             */
+/*   Updated: 2024/07/30 19:49:59 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+void	load_textures()
 {
-	char	*dst;
-
-	dst = game->addr + (y * game->line_length + x * (game->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
-
-void	start_game()
-{
-	// start mlx
-	init_mlx();
-	// load textures
-	//load_textures();
+	
 }

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 16:33:36 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:00:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,22 @@ typedef struct	s_map
 	char	*c;
 }				t_map;
 
-typedef struct	s_game {
-	t_map	*map;
+typedef	struct s_img
+{
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
+	int		bpp;
+	int		size_line;
 	int		endian;
+}				t_img;
+
+
+typedef struct	s_game {
+	t_map	*map;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	t_img	screen_buffer;
 }				t_game;
 
 /*------------- Init functions ---------------*/
@@ -64,6 +73,7 @@ typedef struct	s_game {
 t_game	*game(void);
 t_map	*init_map(t_map *map);
 void	init_game(void);
+void	init_mlx();
 
 /*------------- Parsing functions ---------------*/
 
@@ -86,10 +96,10 @@ char **save_map(char **map, int fd);
 char	**get_map(char *file);
 int valid_map(char *file);
 int	map_conditions(char **layout);
+void	parse_map_textures(char *line);
 
 /*------------- Extention validation functions ---------------*/
 
-int	check_extension(char *str);
 
 /*------------- Free functions ---------------*/
 void free_map(t_map *map);
@@ -97,10 +107,16 @@ void free_game();
 
 /*------------- Debugging functions ---------------*/
 void print_map(char **layout);
-int	check_extension(char *str);
 int	parse_data(char *argv);
 void	init_game(void);
-void	start_game();
 void	error_exit(char *error);
+
+/*----------------- utils -------------------*/
+int	is_space(char c);
+int	check_xpm();
+int	check_order();
+int	check_colors();
+
+void	start_game();
 
 #endif

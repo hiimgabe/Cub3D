@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/11 15:34:52 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/07/30 18:34:10 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ int	map_error(char *file)
 	ft_putstr_fd("Error: ", 2);
     ft_putstr_fd(file, 2);
     ft_putstr_fd(" is not a valid file.\n", 2);
-    return (1);
+    return (EXIT_FAILURE);
 }
 
 int	file_error(int fd)
 {
     (void)fd;
     ft_putstr_fd("Error: File not found\n", 2);
-    return (1);
+    return (EXIT_FAILURE);
 }
 
 void	error_exit(char *error)
 {
 	ft_putstr_fd(error, 2);
     free_game();
-	exit(1);
+	exit(EXIT_FAILURE);
 }
