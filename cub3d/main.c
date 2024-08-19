@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 11:57:43 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/19 15:32:52 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	init_game();
 
 	// This where we parse 
-	if (!parse_data(argv[1]))
+	if (parse_data(argv[1]))
 		free_game();
 	
 	start_game();

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/08/05 11:20:12 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/19 15:01:35 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	start_game()
 	// start mlx
 	init_mlx();
 	// load textures
-	//load_textures();
+	load_textures();
 }

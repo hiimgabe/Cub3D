@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/08/06 15:21:14 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/19 14:36:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,32 @@ int	check_colors()
 		return (EXIT_FAILURE);
 	colors = ft_split(game()->map->f, ',');
 	if (check_rgb(colors))
-		return (free(colors), EXIT_FAILURE);
+	{
+		free(colors);
+		return (EXIT_FAILURE);
+	}
 	free(colors);
 	colors = ft_split(game()->map->c, ',');
 	if (check_rgb(colors))
-		return (free(colors), EXIT_FAILURE);
+	{
+		free(colors);
+		return (EXIT_FAILURE);
+	}
 	free(colors);
 	return (EXIT_SUCCESS);
+}
+
+int	get_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = -1;
+	while (matrix[++i])
+		free(matrix[i]);
+	free(matrix);
 }

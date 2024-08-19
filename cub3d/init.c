@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/30 19:45:28 by gabe             ###   ########.fr       */
+/*   Updated: 2024/08/19 15:32:20 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 t_map	*init_map(t_map *map)
 {
 	map->layout = NULL;
-	map->map_height = 0;
-	map->map_width = 0;
 	map->no = NULL;
 	map->so = NULL;
 	map->we = NULL;
@@ -32,12 +30,11 @@ void	init_game(void)
 {	
 	game()->map = ft_calloc(1, sizeof(t_map));
 	if (!game()->map)
-	{
-		free_game();
-		ft_putstr_fd("Error: map memory allocation failed.\n", 2);
-		exit (1);
-	}
-	init_map(game()->map);
+		error_exit("struct map");
+	(game())->texture_info = ft_calloc(1, sizeof(t_texture_info));
+	if (!game()->texture_info)
+		error_exit("struct textures info");
+	game()->map = init_map(game()->map);
 }
 
 void	init_mlx()
@@ -47,7 +44,8 @@ void	init_mlx()
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
 		return (error_exit("Failed to init mlx."));
-	game()->mlx_win = mlx_new_window(game()->mlx, 800, 800, "CUB3D");
+	mlx_get_screen_size(game()->mlx, &game()->sizex, &game()->sizey);
+	game()->mlx_win = mlx_new_window(game()->mlx, game()->sizex, game()->sizey, "CUB3D");
 	if (!game()->mlx_win)
 		return (error_exit("Failed to init mlx window."));
 	screen_buffer.img = mlx_new_image(game()->mlx, 800, 800);
