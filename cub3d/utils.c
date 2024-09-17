@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/08/19 14:36:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/17 12:57:49 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ int	check_colors()
 	colors = ft_split(game()->map->f, ',');
 	if (check_rgb(colors))
 	{
-		free(colors);
+		free_matrix(colors);
 		return (EXIT_FAILURE);
 	}
-	free(colors);
+	free_matrix(colors);
 	colors = ft_split(game()->map->c, ',');
 	if (check_rgb(colors))
 	{
-		free(colors);
+		free_matrix(colors);
 		return (EXIT_FAILURE);
 	}
-	free(colors);
+	free_matrix(colors);
 	return (EXIT_SUCCESS);
 }
 

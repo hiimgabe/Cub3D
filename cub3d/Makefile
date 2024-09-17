@@ -6,7 +6,7 @@
 #    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/08/06 14:31:25 by gabe             ###   ########.fr        #
+#    Updated: 2024/09/17 13:11:39 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,8 @@ clean:
 	@rm -rf $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	$(MAKE) fclean -C $(LIBFT_DIR)
+	$(RM) -f $(NAME)
 	@echo " \n$(RED)::::: Removing $(NAME) executable ::::: $(RESET)\n "
 
 re: fclean all
