@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/17 12:32:40 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/19 16:59:04 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_game(void)
 	if (!game()->texture_info)
 		error_exit("struct textures info error");
 	game()->map = init_map(game()->map);
+	game()->textures = ft_calloc(5, sizeof(int*));
 }
 
 void	init_mlx()
@@ -49,6 +50,6 @@ void	init_mlx()
 	if (!game()->mlx_win)
 		return (error_exit("Failed to init mlx window."));
 	screen_buffer.img = mlx_new_image(game()->mlx, game()->sizex, game()->sizey);
-	screen_buffer.addr = mlx_get_data_addr(&screen_buffer.img, &screen_buffer.bpp, &screen_buffer.size_line, &screen_buffer.endian);
+	screen_buffer.addr = (int *)mlx_get_data_addr(&screen_buffer.img, &screen_buffer.bpp, &screen_buffer.size_line, &screen_buffer.endian);
 	game()->screen_buffer = screen_buffer;
 }

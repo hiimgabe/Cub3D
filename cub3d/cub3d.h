@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/17 12:58:03 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/19 13:30:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@
 
 /*------------- Structures ---------------*/
 
+typedef enum {
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+} compass;
+
 typedef struct	s_map
 {
 	char	**layout;
@@ -52,7 +59,7 @@ typedef struct	s_map
 typedef	struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -60,6 +67,7 @@ typedef	struct s_img
 
 typedef struct s_texture_info
 {
+	int	size;
 	int	c;
 	int	f;
 }				t_texture_info;
@@ -68,11 +76,12 @@ typedef struct	s_game {
 	t_map			*map;
 	t_texture_info	*texture_info;
 	t_img			screen_buffer;
-	int				sizey;
 	void			*mlx;
 	void			*mlx_win;
 	void			*img;
+	int				**textures;
 	int				sizex;
+	int				sizey;
 }				t_game;
 
 /*------------- Init functions ---------------*/
