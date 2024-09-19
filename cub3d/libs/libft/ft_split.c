@@ -3,90 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:10:00 by pmagalha          #+#    #+#             */
-/*   Updated: 2023/04/28 13:22:06 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:42:33 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	count_words(char const *s, char delim)
+static int	howmanywords(char const *str, char c)
 {
-	size_t	count;
+	size_t	wrdcnt;
 	size_t	i;
 
-	count = 0;
+	wrdcnt = 0;
 	i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		while (s[i] == delim)
-			i++;
-		if (s[i])
-			count++;
-		while (s[i] && s[i] != delim)
+		if (str[i] != c)
+		{
+			wrdcnt++;
+			while (str[i] && str[i] != c)
+				i++;
+		}
+		else
 			i++;
 	}
-	return (count);
+	return (wrdcnt);
 }
 
-size_t	size_specific_word(char *s, char delim)
+static char	*addword(char const *str, char c)
 {
+	char	*word;
 	size_t	i;
 
 	i = 0;
-	while (s[i] && s[i] != delim)
-		i += 1;
-	return (i);
-}
-
-char	*words(char *s, char delim)
-{
-	size_t	i;
-	size_t	len;
-	char	*word;
-
-	len = size_specific_word(s, delim);
-	word = malloc((len + 1) * sizeof(char));
+	while (str[i] && str[i] != c)
+		i++;
+	word = (char *) malloc(sizeof(char) * (i + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while (str[i] && str[i] != c)
 	{
-		word[i] = s[i];
-		i += 1;
+		word[i] = str[i];
+		i++;
 	}
 	word[i] = '\0';
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *str, char c)
 {
+	size_t	w;
 	char	**res;
-	size_t	j;
 
-	if (!s)
+	w = 0;
+	res = (char **) malloc(sizeof(char *) * (howmanywords(str, c) + 1));
+	if (!res || !str)
 		return (NULL);
-	res = malloc((count_words(s, c) + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
-	j = 0;
-	while (*s)
+	while (*str)
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s)
+		if (*str != c)
 		{
-			res[j] = words((char *)s, c);
-			j += 1;
+			res[w] = addword(str, c);
+			while (*str && *str != c)
+				str++;
+			w++;
 		}
-		while (*s && *s != c)
-			s++;
+		else
+			str++;
 	}
-	res[j] = 0;
+	res[w] = 0;
 	return (res);
 }
+
+
 /*
 int main(void)
 {

@@ -4,8 +4,8 @@ NO ./assets/textures/no.xpm
 WE ./assets/textures/we.xpm
 EA ./assets/textures/ea.xpm
 
-F 55,51,12
-C 80,80,4
+F 139,99,58
+C 171,154,137
 
 1111111111111111111111111
 1000000000110000000000001

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joao-ppe <joao-ppe@student.42porto.com>    +#+  +:+       +#+         #
+#    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:32:44 by pmagalha          #+#    #+#              #
-#    Updated: 2024/02/14 15:12:30 by joao-ppe         ###   ########.fr        #
+#    Updated: 2024/09/17 13:07:07 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,11 +70,16 @@ CC = cc
 
 RM = rm -f
 
+INCLUDE = .
+
 CFLAGS = -Wall -Wextra -Werror
 
 OBJ_MDT = $(MDT:.c=.o)
 
 NAME = libft.a
+
+%.o : %.c
+	@$(CC) $(FLAGS) -c $< -o $@ -I $(INCLUDE)
 
 all : $(NAME)
 

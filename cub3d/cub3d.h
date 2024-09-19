@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/08/06 15:00:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/19 13:30:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@
 
 /*------------- Structures ---------------*/
 
+typedef enum {
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
+} compass;
+
 typedef struct	s_map
 {
 	char	**layout;
-	int		map_width;
 	int		map_height;
 	char	*no;
 	char	*so;
@@ -53,19 +59,29 @@ typedef struct	s_map
 typedef	struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
 }				t_img;
 
+typedef struct s_texture_info
+{
+	int	size;
+	int	c;
+	int	f;
+}				t_texture_info;
 
 typedef struct	s_game {
-	t_map	*map;
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	t_img	screen_buffer;
+	t_map			*map;
+	t_texture_info	*texture_info;
+	t_img			screen_buffer;
+	void			*mlx;
+	void			*mlx_win;
+	void			*img;
+	int				**textures;
+	int				sizex;
+	int				sizey;
 }				t_game;
 
 /*------------- Init functions ---------------*/
@@ -74,6 +90,7 @@ t_game	*game(void);
 t_map	*init_map(t_map *map);
 void	init_game(void);
 void	init_mlx();
+void	load_textures();
 
 /*------------- Parsing functions ---------------*/
 
@@ -116,6 +133,8 @@ int	is_space(char c);
 int	check_xpm();
 int	check_order();
 int	check_colors();
+int	get_trgb(int t, int r, int g, int b);
+void	free_matrix(char **matrix);
 
 void	start_game();
 
