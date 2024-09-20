@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/09/20 15:38:53 by gabe             ###   ########.fr       */
+/*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
+/*   Updated: 2024/09/20 16:14:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	start_game()
+int	handle_input(int key)
 {
-	// start mlx
-	init_mlx();
-	// load textures
-	load_textures();
-	mlx_hook(game()->mlx_win, KeyPress, KeyPressMask, handle_input, NULL);
-	mlx_loop_hook(game()->mlx, render_game, NULL);
-	mlx_loop(game()->mlx);
+	if (key == 65307)
+		exit(42);
+	if (key == 119)// W
+		exit(43);
+	if (key == 97)// A
+		exit(44);
+	if (key == 115)// S
+		exit(45);
+	if (key == 100)// D
+		exit(46);
+	return (0);
 }

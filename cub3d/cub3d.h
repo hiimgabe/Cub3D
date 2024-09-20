@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/19 13:30:21 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/20 15:07:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef enum {
 	EAST
 } compass;
 
+typedef struct	s_pos
+{
+	double	y;
+	double	x;
+}				t_pos;
+
 typedef struct	s_map
 {
 	char	**layout;
@@ -80,8 +86,8 @@ typedef struct	s_game {
 	void			*mlx_win;
 	void			*img;
 	int				**textures;
-	int				sizex;
-	int				sizey;
+	int				screenSizex;
+	int				screenSizey;
 }				t_game;
 
 /*------------- Init functions ---------------*/
@@ -137,5 +143,13 @@ int	get_trgb(int t, int r, int g, int b);
 void	free_matrix(char **matrix);
 
 void	start_game();
+
+/*------------------input.c------------------*/
+
+int	handle_input(int key);
+
+
+/*------------------render.c------------------*/
+int	render_game(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/07/12 09:41:58 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/20 15:25:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,10 @@ char	**get_map(char *file)
 
 void print_map(char **layout)
 {
-    int i = 0;
+    int i = -1;
 
-    while (layout[i])
-    {
+    while (layout[++i] != NULL)
         printf("%s", layout[i]);
-        i++;
-    }
     printf("\n");
 }
 
