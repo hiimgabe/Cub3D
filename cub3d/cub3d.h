@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/20 15:07:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/25 15:57:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include "libs/minilibx-linux/mlx.h"
+
+/*MACROS*/
+#define	MAP_POS 50
 
 /*------------- Structures ---------------*/
 
@@ -78,10 +81,19 @@ typedef struct s_texture_info
 	int	f;
 }				t_texture_info;
 
-typedef struct	s_game {
+typedef struct	s_player
+{
+	t_pos	pos;
+	t_pos	dir;
+	t_pos	cam;
+}				t_player;
+
+typedef struct	s_game
+{
 	t_map			*map;
 	t_texture_info	*texture_info;
 	t_img			screen_buffer;
+	t_player		*player;
 	void			*mlx;
 	void			*mlx_win;
 	void			*img;
@@ -151,5 +163,11 @@ int	handle_input(int key);
 
 /*------------------render.c------------------*/
 int	render_game(void);
+
+/*-------------------player.c----------------*/
+void	load_player();
+
+/*-------------------raycast.c-----------------*/
+void	raycast();
 
 #endif

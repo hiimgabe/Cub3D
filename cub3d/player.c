@@ -1,50 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
-/*   Updated: 2024/09/25 14:40:15 by gabe             ###   ########.fr       */
+/*   Created: 2024/09/25 10:33:14 by gabe              #+#    #+#             */
+/*   Updated: 2024/09/25 15:19:41 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	handle_input(int key)
+static void	set_player_pos()
 {
-	if (key == 65307)
-		exit(42);
-	else if (key == 119)// W
+	int		x;
+	int		y;
+
+	y = -1;
+	while (game()->map->layout[++y])
 	{
-		printf("W");
-		exit(42);
+		x = -1;
+		while (game()->map->layout[y][++x] != '\0')
+		{
+			if (game()->map->layout[y][x] == 'N' || game()->map->layout[y][x] == 'S'
+				|| game()->map->layout[y][x] == 'E' || game()->map->layout[y][x] == 'W')
+				{
+					game()->player->dir = game()->map->layout[y][x];
+					return ;
+				}
+		}
 	}
-	else if (key == 97)// A
-	{
-		printf("A");
-		exit(42);
-	}
-	else if (key == 115)// S
-	{
-		printf("S");
-		exit(42);
-	}
-	else if (key == 100)// D
-	{
-		printf("D");
-		exit('D');
-	}
-	else if (key == 65363)// ->
-	{
-		printf("->");
-		exit(42);
-	}
-	else if (key == 65361)// <-
-	{
-		printf("<-");
-		exit(42);
-	}
-	return (0);
+}
+
+void	load_player()
+{
+	set_player_pos();
+	
 }

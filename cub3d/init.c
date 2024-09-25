@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/20 16:03:28 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/25 10:32:31 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_game(void)
 		error_exit("struct textures info error");
 	game()->map = init_map(game()->map);
 	game()->textures = ft_calloc(5, sizeof(int*));
+	game()->player = ft_calloc(1, sizeof(t_player));
 }
 
 void	init_mlx()
