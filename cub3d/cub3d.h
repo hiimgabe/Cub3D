@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/25 15:57:21 by gabe             ###   ########.fr       */
+/*   Updated: 2024/09/26 15:21:15 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # include "libs/minilibx-linux/mlx.h"
 
 /*MACROS*/
-#define	MAP_POS 50
+#define	MAP_POS		50
+#define	TILE_SIZE	10
 
 /*------------- Structures ---------------*/
 
@@ -49,8 +50,8 @@ typedef enum {
 
 typedef struct	s_pos
 {
-	double	y;
 	double	x;
+	double	y;
 }				t_pos;
 
 typedef struct	s_map
@@ -81,11 +82,27 @@ typedef struct s_texture_info
 	int	f;
 }				t_texture_info;
 
+typedef struct	s_ray
+{
+	t_pos	pos;
+	t_pos	dir;
+	t_pos	delta_dist;
+	t_pos	side_dist;
+	t_pos	step;
+	double	perp_wall_dist;
+	double	wall_x;
+	int		line_height;
+	int		start;
+	int		end;
+	int		side;
+}				t_ray;
+
 typedef struct	s_player
 {
 	t_pos	pos;
 	t_pos	dir;
 	t_pos	cam;
+	char	compass;
 }				t_player;
 
 typedef struct	s_game
@@ -169,5 +186,9 @@ void	load_player();
 
 /*-------------------raycast.c-----------------*/
 void	raycast();
+
+/*----------------utils_pos.c-------------------*/
+t_pos	convert_to_screen(t_pos pos);
+t_pos	convert_to_map(t_pos screen_pos);
 
 #endif

@@ -1,6 +1,4 @@
 
 
 finish raycasting
-	convetions from map to screen and vice versa
-	load player is missing such convertions
-		(should convert map coords to screen before saving player pos)
+	render textures()!!!
