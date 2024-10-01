@@ -1,4 +1,5 @@
 
 
 finish raycasting
-	render textures()!!!
+	fps counter
+	handle movements

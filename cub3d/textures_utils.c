@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   textures_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/01 14:49:32 by gabe             ###   ########.fr       */
+/*   Created: 2024/10/01 09:42:04 by gabe              #+#    #+#             */
+/*   Updated: 2024/10/01 09:49:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	start_game()
+int	shader(double wall_dist, int color)
 {
-	game()->player.moving = true;
-	// start mlx
-	init_mlx();
-	// load textures
-	load_textures();
-	mlx_hook(game()->mlx_win, KeyPress, KeyPressMask, handle_input, NULL);
-	mlx_loop_hook(game()->mlx, render_game, NULL);
-	load_player();
-	mlx_loop(game()->mlx);
+	double	attenuation_coef;
+
+	if (wall_dist > RENDER_DIST)
+		return (0x00000000);// BLACK
+	attenuation_coef = (RENDER_DIST - wall_dist) / RENDER_DIST;
+	return (get_trgb(0, (int)(attenuation_coef * ((color >> 16) & 0xFF)), (int)(attenuation_coef * ((color >> 8) & 0xFF)), (int)(attenuation_coef * (color & 0xFF))));
 }

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/09/26 09:57:17 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/01 14:50:48 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	render_floor()
 	int	y;
 	int	x;
 
-	y = game()->screenSizey / 2 - 1;
-	while (++y < game()->screenSizey)
+	y = SCREEN_H / 2 - 1;
+	while (++y < SCREEN_H)
 	{
 		x = -1;
-		while (++x < game()->screenSizex)
+		while (++x < SCREEN_W)
 		{
 			//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
 			render_pixel((t_pos){x, y}, game()->texture_info->f);
@@ -53,10 +53,10 @@ void	render_ceiling()
 	int	x;
 
 	y = -1;
-	while (++y < game()->screenSizey / 2)
+	while (++y < SCREEN_H / 2)
 	{
 		x = -1;
-		while (++x < game()->screenSizex)
+		while (++x < SCREEN_W)
 		{
 			//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
 			render_pixel((t_pos){x, y}, game()->texture_info->c);
@@ -64,11 +64,29 @@ void	render_ceiling()
 	}
 }
 
+void	clear_screen()
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < SCREEN_H)
+	{
+		j = -1;
+		while (++j < SCREEN_W)
+			render_pixel((t_pos){j, i}, 0x00000000);
+	}
+}
+
 int	render_game(void)
 {
+	if (!game()->player.moving)
+		return (0);
+	clear_screen();
 	render_ceiling();
 	render_floor();
 	raycast();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buffer.img, 0, 0);
+	game()->player.moving = false;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/09/26 09:50:17 by gabe             ###   ########.fr        #
+#    Updated: 2024/10/01 09:42:02 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #                                  SOURCE FILES                                #
 ################################################################################
 
-SRC = main.c error.c init.c parser.c free.c map_check.c map_conditions.c game.c textures.c textures_validation.c utils.c input.c render.c player.c raycast.c utils_pos.c\
+SRC = main.c error.c init.c parser.c free.c map_check.c map_conditions.c game.c textures.c textures_validation.c utils.c input.c render.c player.c raycast.c utils_pos.c textures_utils.c\
 
 OBJS = $(SRC:.c=.o)
 DEPS = $(LIBFT_DIR)/libft.a
