@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/01 14:50:48 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/04 15:25:10 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	render_floor()
 		while (++x < SCREEN_W)
 		{
 			//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
-			render_pixel((t_pos){x, y}, game()->texture_info->f);
+			render_pixel((t_pos){x, y}, shader_floor(y, game()->texture_info->f));
 		}
 	}
 }
@@ -59,7 +59,7 @@ void	render_ceiling()
 		while (++x < SCREEN_W)
 		{
 			//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
-			render_pixel((t_pos){x, y}, game()->texture_info->c);
+			render_pixel((t_pos){x, y}, shader_ceiling(y, game()->texture_info->c));
 		}
 	}
 }

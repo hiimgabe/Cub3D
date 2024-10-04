@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/01 14:45:40 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/04 15:24:58 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,5 +205,7 @@ t_pos	convert_to_map(t_pos screen_pos);
 /*texture utils*/
 
 int	shader(double wall_dist, int color);
+int	shader_floor(int dist, int color);
+int	shader_ceiling(int dist, int color);
 
 #endif

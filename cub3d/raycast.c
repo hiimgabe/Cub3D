@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:42:19 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/01 14:39:31 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/04 15:28:50 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	render_texture(t_ray *ray, int x)
 		text->pos += text->step;
 		color = game()->textures[text->index][text->size * text->y + text->x];
 		if (text->index == SOUTH || text->index == NORTH)
-			color = (color >> 1) & 835571;
+			color = (color >> 1) & 8355711;
 		color = shader(ray->perp_wall_dist, color);
 		render_pixel((t_pos){x, y}, color);
 		y++;
