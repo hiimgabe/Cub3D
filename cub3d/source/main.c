@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:24:41 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:40:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int argc, char **argv)
 		free_game();
 	
 	start_game();
-	printf("Exiting successfull\n");
 	free_game();
 	return (EXIT_SUCCESS);
 }
