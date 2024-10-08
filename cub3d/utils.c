@@ -6,38 +6,34 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/09/17 12:57:49 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/01 10:48:49 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_space(char c)
+int is_space(char c)
 {
 	return (c == 32 || (c >= 9 && c <= 13));
 }
 
-int	is_number(char c)
+int is_number(char c)
 {
 	return (c >= 48 && c <= 57);
 }
 
-int	check_order()
+int check_order()
 {
-	if ((game()->map->no && !game()->map->so)
-		|| (game()->map->we && !game()->map->no)
-		|| (game()->map->ea && !game()->map->we)
-		|| (game()->map->f && !game()->map->ea)
-		|| (game()->map->c && !game()->map->f))
+	if ((game()->map->no && !game()->map->so) || (game()->map->we && !game()->map->no) || (game()->map->ea && !game()->map->we) || (game()->map->f && !game()->map->ea) || (game()->map->c && !game()->map->f))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	is_valid_xpm_file(char *xpm)
+int is_valid_xpm_file(char *xpm)
 {
-	int		len;
-	char	*extention;
-	
+	int len;
+	char *extention;
+
 	if (xpm[0] != '.')
 		return (EXIT_FAILURE);
 	len = ft_strlen(xpm);
@@ -47,38 +43,33 @@ int	is_valid_xpm_file(char *xpm)
 		free(extention);
 		return (EXIT_SUCCESS);
 	}
-	free (extention);
+	free(extention);
 	return (EXIT_FAILURE);
 }
 
-int	check_xpm()
+int check_xpm()
 {
-	if (is_valid_xpm_file(game()->map->so)
-		|| is_valid_xpm_file(game()->map->no)
-		|| is_valid_xpm_file(game()->map->we)
-		|| is_valid_xpm_file(game()->map->ea))
+	if (is_valid_xpm_file(game()->map->so) || is_valid_xpm_file(game()->map->no) || is_valid_xpm_file(game()->map->we) || is_valid_xpm_file(game()->map->ea))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	check_rgb(char **colors)
+int check_rgb(char **colors)
 {
-	int		color[3];
-	
+	int color[3];
+
 	color[0] = ft_atoi(colors[0]);
 	color[1] = ft_atoi(colors[1]);
 	color[2] = ft_atoi(colors[2]);
-	if (!(color[0] >= 0 && color[0] <= 255)
-		|| !(color[1] >= 0 && color[1] <= 255)
-		|| !(color[2] >= 0 && color[2] <= 255))
-			return (EXIT_FAILURE);
+	if (!(color[0] >= 0 && color[0] <= 255) || !(color[1] >= 0 && color[1] <= 255) || !(color[2] >= 0 && color[2] <= 255))
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	check_colors()
+int check_colors()
 {
-	char	**colors;
-	
+	char **colors;
+
 	if (!game()->map->f || !game()->map->c)
 		return (EXIT_FAILURE);
 	colors = ft_split(game()->map->f, ',');
@@ -98,17 +89,22 @@ int	check_colors()
 	return (EXIT_SUCCESS);
 }
 
-int	get_trgb(int t, int r, int g, int b)
+int get_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void	free_matrix(char **matrix)
+void free_matrix(char **matrix)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (matrix[++i])
 		free(matrix[i]);
 	free(matrix);
+}
+
+bool	is_wall(char c)
+{
+	return (c == '1');
 }

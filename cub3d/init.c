@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/19 16:59:04 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/01 14:33:29 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	init_mlx()
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
 		return (error_exit("Failed to init mlx."));
-	mlx_get_screen_size(game()->mlx, &game()->sizex, &game()->sizey);
-	game()->mlx_win = mlx_new_window(game()->mlx, game()->sizex, game()->sizey, "CUB3D");
+	printf("screen size : %d x %d\n", SCREEN_H, SCREEN_W);
+	game()->mlx_win = mlx_new_window(game()->mlx, SCREEN_W, SCREEN_H, "CUB3D");
 	if (!game()->mlx_win)
 		return (error_exit("Failed to init mlx window."));
-	screen_buffer.img = mlx_new_image(game()->mlx, game()->sizex, game()->sizey);
-	screen_buffer.addr = (int *)mlx_get_data_addr(&screen_buffer.img, &screen_buffer.bpp, &screen_buffer.size_line, &screen_buffer.endian);
+	screen_buffer.img = mlx_new_image(game()->mlx, SCREEN_W, SCREEN_H);
+	screen_buffer.addr = (int *)mlx_get_data_addr(screen_buffer.img, &screen_buffer.bpp, &screen_buffer.size_line, &screen_buffer.endian);
 	game()->screen_buffer = screen_buffer;
 }
