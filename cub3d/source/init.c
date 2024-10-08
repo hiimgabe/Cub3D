@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:40:47 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ t_map	*init_map(t_map *map)
 
 void	init_game(void)
 {	
-	game()->map = ft_calloc(1, sizeof(t_map));
+	(game())->map = ft_calloc(1, sizeof(t_map));
 	if (!game()->map)
 		error_exit("struct map error");
 	(game())->texture_info = ft_calloc(1, sizeof(t_texture_info));
 	if (!game()->texture_info)
 		error_exit("struct textures info error");
 	game()->map = init_map(game()->map);
-	game()->textures = ft_calloc(5, sizeof(int*));
+	(game())->textures = ft_calloc(5, sizeof(int*));
 }
 
 void	init_mlx()
@@ -45,7 +45,6 @@ void	init_mlx()
 	game()->mlx = mlx_init();
 	if (!game()->mlx)
 		return (error_exit("Failed to init mlx."));
-	printf("screen size : %d x %d\n", SCREEN_H, SCREEN_W);
 	game()->mlx_win = mlx_new_window(game()->mlx, SCREEN_W, SCREEN_H, "CUB3D");
 	if (!game()->mlx_win)
 		return (error_exit("Failed to init mlx window."));

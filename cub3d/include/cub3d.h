@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:26:05 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:01:26 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 #define	RENDER_DIST	10
 #define	SCREEN_W		800
 #define	SCREEN_H		800
-
+#define	MOVEMENTSPEED	0.125
 /*------------- Structures ---------------*/
 
 typedef enum {
@@ -111,8 +111,11 @@ typedef struct	s_player
 	t_pos	pos;
 	t_pos	dir;
 	t_pos	cam;
-	bool	moving;
 	char	compass;
+	int		y;
+	int		x;
+	int		moving;
+	int		rotate;
 }				t_player;
 
 typedef struct	s_game
@@ -182,10 +185,12 @@ int	get_trgb(int t, int r, int g, int b);
 void	free_matrix(char **matrix);
 bool	is_wall(char c);
 void	start_game();
+bool	is_wall(char c);
 
 /*------------------input.c------------------*/
 
 int	handle_input(int key);
+int	input_release(int key);
 
 
 /*------------------render.c------------------*/
@@ -207,5 +212,9 @@ t_pos	convert_to_map(t_pos screen_pos);
 int	shader(double wall_dist, int color);
 int	shader_floor(int dist, int color);
 int	shader_ceiling(int dist, int color);
+
+/*movement.c*/
+int	move_player();
+int	check_move(t_pos move);
 
 #endif

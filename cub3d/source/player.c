@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:33:14 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:26:10 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	set_player_pos()
 				|| game()->map->layout[y][x] == 'E' || game()->map->layout[y][x] == 'W')
 			{
 				game()->player.compass = game()->map->layout[y][x];
-				game()->player.pos = convert_to_screen((t_pos){x, y});
+				(game())->player.pos = convert_to_screen((t_pos){x, y});
 			}
 		}
 	}
@@ -59,10 +59,14 @@ void	load_player()
 {
 	t_pos	map_pos;
 	
-	game()->player.pos = (t_pos){0.0, 0.0};
+	(game())->player.pos = (t_pos){0.0, 0.0};
 	set_player_pos();
 	map_pos = convert_to_map(game()->player.pos);
-	printf("map_pos x %f y %f\n", map_pos.x, map_pos.y);
 	set_player_dir(map_pos);
 	set_player_cam(map_pos);
+	game()->map->layout[(int)map_pos.y][(int)map_pos.x] = '0';
+	game()->player.moving = 1;
+	game()->player.x = 0;
+	game()->player.y = 0;
+	game()->player.rotate = 0;
 }

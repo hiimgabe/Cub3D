@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:58:10 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ void	clear_screen()
 
 int	render_game(void)
 {
-	if (!game()->player.moving)
+	game()->player.moving += move_player();
+	if (game()->player.moving == 0)
 		return (0);
 	clear_screen();
 	render_ceiling();
 	render_floor();
 	raycast();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buffer.img, 0, 0);
-	game()->player.moving = false;
+	game()->player.moving = 0;
 	return (0);
 }

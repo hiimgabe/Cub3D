@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:40:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	parse_data(char *argv)
 {
  	if (textures_validation(argv))
 		return (error_exit("Invalid textures.\n"), EXIT_FAILURE);
-	printf("%s\n%s\n%s\n%s\n%s\n%s\n", game()->map->so, game()->map->no, game()->map->we, game()->map->ea, game()->map->f, game()->map->c);
 	if (valid_map(argv))
 		return (error_exit("Map validation error\n"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);

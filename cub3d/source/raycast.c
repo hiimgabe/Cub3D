@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:42:19 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 15:38:24 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	start_ray(t_ray *ray, double x)
+static void	start_ray(t_ray *ray, int x)
 {
 	double		cam_x;
 	t_player	player;
@@ -20,20 +20,22 @@ static void	start_ray(t_ray *ray, double x)
 	player = game()->player;
 	cam_x = 2 * (double)x / SCREEN_W - 1;
 	ray->pos = convert_to_map(player.pos);
-	printf("ray dir x %f y %f\n", ray->dir.x, ray->dir.y);
-	printf("player cam x %f y %f\n", player.cam.x, player.cam.y);
-	printf("player dir x %f y %f\n", player.dir.x, player.dir.y);
 	ray->dir.x = player.dir.x + player.cam.x * cam_x;
 	ray->dir.y = player.dir.y + player.cam.y * cam_x;
+	//printf("===============================================\n");
+	//printf("x %d\n", x);
+	//printf("game()->player y %f x %f\n", game()->player.pos.y, game()->player.pos.x);
+	//printf("player y %f x %f\n", player.pos.y, player.pos.x);
+	//printf("cam_x %f\n", cam_x);
+	//printf("ray->pos y %f x %f\n", ray->pos.y, ray->pos.x);
+	//printf("ray->dir y %f x %f\n", ray->dir.y, ray->dir.x);
 }
 
 static void	set_delta_dist(t_ray *ray)
 {
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
-	printf("ray pos x %f y %f\n", ray->pos.x, ray->pos.y);
-	printf("ray dir x %f y %f\n", ray->dir.x, ray->dir.y);
-	printf("ray delta x %f y %f\n", ray->delta_dist.x, ray->delta_dist.y);
+	//printf("ray->delta dist y %f x %f\n", ray->delta_dist.y, ray->delta_dist.x);
 }
 
 static void	set_side_dist(t_ray *ray)
@@ -58,8 +60,9 @@ static void	set_side_dist(t_ray *ray)
 		ray->step.y = 1;
 		ray->side_dist.y = ((int)ray->pos.y + 1 - ray->pos.y) * ray->delta_dist.y;
 	}
-	printf("ray step x %f y %f\n", ray->step.x, ray->step.y);
-	printf("ray side dist x %f y %f\n", ray->side_dist.x, ray->side_dist.y);
+	//printf("ray->dir y %f x %f\n", ray->dir.y, ray->dir.x);
+	//printf("ray->step y %f x %f\n", ray->step.y, ray->step.x);
+	//printf("ray->side dist y %f x %f\n", ray->side_dist.y, ray->side_dist.x);
 }
 
 static void	dda(t_ray *ray)
@@ -81,15 +84,12 @@ static void	dda(t_ray *ray)
 			ray->pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		//printf("\n");
-		//print_map(game()->map->layout);
-		//printf("\n");
-		printf("ray side %d\n", ray->side);
-		//printf("wall? %c\n", game()->map->layout[(int)ray->pos.y][(int)ray->pos.x]);
-		if (game()->map->layout[(int)ray->pos.y][(int)ray->pos.x] == '1')
+		if (is_wall(game()->map->layout[(int)ray->pos.y][(int)ray->pos.x]))
 			wall_hit = true;
 	}
-	//printf("wall hit at y %d x %d\n", (int)ray->pos.y, (int)ray->pos.x);
+	//printf("ray->side dist y %f x %f\n", ray->side_dist.y, ray->side_dist.x);
+	//printf("ray->pos y %f x %f\n", ray->pos.y, ray->pos.x);
+	//printf("ray->side %d\n", ray->side);
 }
 
 static void	calc_line_height(t_ray *ray)
@@ -97,16 +97,12 @@ static void	calc_line_height(t_ray *ray)
 	t_pos	curr;
 
 	curr = convert_to_map(game()->player.pos);
-	printf("curr pos x %f y %f\n", curr.x, curr.x);
 	if (!ray->side)
 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
 		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
-	printf("wall_dist %f\n", ray->perp_wall_dist);
 	ray->line_height = (int)(SCREEN_W / ray->perp_wall_dist);
 	ray->start = -ray->line_height / 2 + SCREEN_W / 2;
-	printf("line height %d\n", ray->line_height);
-	printf("start %d\n", ray->start);
 	if (ray->start < 0)
 		ray->start = 0;
 	ray->end = ray->line_height / 2 + SCREEN_W / 2;
