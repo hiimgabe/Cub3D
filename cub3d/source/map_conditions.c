@@ -6,11 +6,11 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/20 15:21:50 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 static int	invalid_characters(char *line)
 {

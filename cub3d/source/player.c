@@ -6,11 +6,11 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:33:14 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/01 11:59:14 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 static void	set_player_pos()
 {

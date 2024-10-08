@@ -6,11 +6,11 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:48:35 by gabe              #+#    #+#             */
-/*   Updated: 2024/09/26 11:10:39 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 t_pos	convert_to_screen(t_pos pos)
 {

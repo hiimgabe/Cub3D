@@ -6,11 +6,11 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/04 15:25:10 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 /*
 	renders a pixel with color at pos{y, x}

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/04 15:24:58 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/08 10:26:05 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 /*------------- Libraries ---------------*/
 
-# include "libs/libft/libft.h"
+# include "../include/libft/libft.h"
+# include "../include/minilibx-linux/mlx.h"
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
@@ -34,7 +35,6 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
-# include "libs/minilibx-linux/mlx.h"
 
 /*MACROS*/
 #define	MAP_POS		50

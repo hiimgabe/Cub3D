@@ -6,7 +6,7 @@
 #    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/10/04 15:10:59 by gabe             ###   ########.fr        #
+#    Updated: 2024/10/08 10:50:20 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,12 @@
 #                                  SOURCE FILES                                #
 ################################################################################
 
-SRC = main.c error.c init.c parser.c free.c map_check.c map_conditions.c game.c textures.c textures_validation.c utils.c input.c render.c player.c raycast.c utils_pos.c shaders.c\
-
-OBJS = $(SRC:.c=.o)
+OBJ_DIR = bin
+SRC_DIR = source
+INC = -I include
 DEPS = $(LIBFT_DIR)/libft.a
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 ################################################################################
 #                           EXECUTABLES & LIBRARIES                            #
@@ -26,8 +28,8 @@ DEPS = $(LIBFT_DIR)/libft.a
 
 NAME = cub3d
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_DIR = ./libs/libft
-MLX_DIR = ./libs/minilibx-linux
+LIBFT_DIR = ./include/libft/
+MLX_DIR = ./include/minilibx-linux/
 MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -I $(MLX_DIR)
 
 ################################################################################
@@ -36,17 +38,12 @@ MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -I $(MLX_DIR)
 
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror -g
-MLXFLAGS = -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -Ilmlx -lXext -lX11
+MAKE = make -C
 
 ################################################################################
 #                                    RULES                                     #
 ################################################################################
-
-all: deps $(NAME)
-
-deps:
-	$(MAKE) -C $(LIBFT_DIR)
-	$(MAKE) -C $(MLX_DIR)
 
 GREEN		= \033[38;5;47m
 YELLOW		= \033[38;5;226m
@@ -57,8 +54,20 @@ BLUE 		= \033[0;34m
 PURPLE		= \033[38;5;93m
 ORANGE		= \033[38;5;202m
 
-$(NAME): $(OBJS) $(DEPS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLXFLAGS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@cc $(CFLAGS) -g -c $< -o $@
+	@echo "[${GREEN}compiling${RESET}]: $<"
+
+all: $(NAME)
+
+${OBJ_DIR}:
+	@mkdir bin/
+	@echo "${GREEN}bin created${RESET}"
+
+$(NAME): $(OBJ)
+	@$(MAKE) $(LIBFT_DIR)
+	@$(MAKE) $(MLX_DIR)
+	@cc $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 	@echo "\n$(RED)          _____                    _____                    _____                    _____          $(RESET)"
 	@echo "$(RED)         /\    \                  /\    \                  /\    \                  /\    \         $(RESET)"
 	@echo "$(RED)        /::\    \                /::\____\                /::\    \                /::\    \        $(RESET)"
@@ -82,17 +91,14 @@ $(NAME): $(OBJS) $(DEPS)
 	@echo "$(PURPLE)         \/____/                  \/____/                  \/____/                  \/____/         $(RESET)"
 	@echo "$ \n$(RESET)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "[$(BLUE)compiling$(RESET)]:\t $<"
-	
+
 clean:
-	$(MAKE) clean -C $(LIBFT_DIR)
-	$(MAKE) clean -C $(MLX_DIR)
-	@rm -rf $(OBJS)
+	$(MAKE) $(LIBFT_DIR) clean
+	$(MAKE) $(MLX_DIR) clean
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFT_DIR)
+	$(MAKE) $(LIBFT_DIR) fclean
 	$(RM) -f $(NAME)
 	@echo " \n$(RED)::::: Removing $(NAME) executable ::::: $(RESET)\n "
 
