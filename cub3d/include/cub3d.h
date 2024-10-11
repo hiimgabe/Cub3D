@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 15:01:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/11 16:17:47 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,31 @@
 /*MACROS*/
 #define	MAP_POS		50
 #define	TILE_SIZE	10
-#define	RENDER_DIST	10
+#define	RENDER_DIST	20
 #define	SCREEN_W		800
 #define	SCREEN_H		800
-#define	MOVEMENTSPEED	0.125
+#define	MOVEMENTSPEED	0.500
+#define	ROTSPEED		0.050
 /*------------- Structures ---------------*/
+
+typedef enum {
+	TL,
+	TR,
+	BL,
+	BR
+}	t_diagonal;
+
+typedef	enum {
+	RIGHT,
+	LEFT
+}	t_rotation;
 
 typedef enum {
 	NORTH,
 	SOUTH,
 	WEST,
 	EAST
-} compass;
+}	t_compass;
 
 typedef struct	s_pos
 {
@@ -183,8 +196,8 @@ int	check_order();
 int	check_colors();
 int	get_trgb(int t, int r, int g, int b);
 void	free_matrix(char **matrix);
-bool	is_wall(char c);
 void	start_game();
+bool	is_floor(char c);
 bool	is_wall(char c);
 
 /*------------------input.c------------------*/
@@ -216,5 +229,6 @@ int	shader_ceiling(int dist, int color);
 /*movement.c*/
 int	move_player();
 int	check_move(t_pos move);
+int	rotate_camera(t_rotation rotation);
 
 #endif
