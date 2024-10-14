@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/11 16:17:47 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/14 15:42:12 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,19 @@
 #define	RENDER_DIST	20
 #define	SCREEN_W		800
 #define	SCREEN_H		800
-#define	MOVEMENTSPEED	0.500
-#define	ROTSPEED		0.050
+#define	MOVEMENTSPEED	0.300
+#define	ROTSPEED		0.025
+#define	MINIMAP_W		0x202060
+#define MINIMAP_F		0x5BC8AF
+#define MINIMAP_P		0xFF00FF
+#define RESET	"\033[0m"
+#define RED		"\033[38;5;196m"
+#define GREEN	"\033[38;5;47m"
+#define YELLOW	"\033[38;5;226m"
+#define BLUE	"\033[0;34m"
+#define PURPLE	"\033[38;5;93m"
+#define CYAN	"\033[1;36m"
+#define WHITE	"\033[37m"
 /*------------- Structures ---------------*/
 
 typedef enum {
@@ -95,9 +106,9 @@ typedef	struct s_img
 typedef struct s_texture_info
 {
 	int	size;
+	int	index;
 	int	c;
 	int	f;
-	int	index;
 	int	x;
 	int	y;
 	double	step;
@@ -125,6 +136,7 @@ typedef struct	s_player
 	t_pos	dir;
 	t_pos	cam;
 	char	compass;
+	bool	minimap;
 	int		y;
 	int		x;
 	int		moving;
@@ -175,9 +187,6 @@ char	**get_map(char *file);
 int valid_map(char *file);
 int	map_conditions(char **layout);
 void	parse_map_textures(char *line);
-
-/*------------- Extention validation functions ---------------*/
-
 
 /*------------- Free functions ---------------*/
 void free_map(t_map *map);
@@ -230,5 +239,8 @@ int	shader_ceiling(int dist, int color);
 int	move_player();
 int	check_move(t_pos move);
 int	rotate_camera(t_rotation rotation);
+
+/*minimap*/
+void	draw_minimap();
 
 #endif
