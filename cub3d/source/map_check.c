@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 15:43:22 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/14 15:08:45 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,7 @@ int valid_map(char *file)
         ft_putstr_fd("Error: invalid map.\n", 2);
         return (1);
     }
-	if (!map_conditions(game()->map->layout))
-		print_map(game()->map->layout);
-	else
+	if (map_conditions(game()->map->layout))
 		return (ft_putstr_fd("Error: map is not ok.\n", 2), 1);
     return (0);
 }
