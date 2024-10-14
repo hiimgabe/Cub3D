@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/11 16:14:12 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/14 13:33:57 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	handle_input(int key)
 		game()->player.rotate += 1;
 	if (key == 65361)// <-
 		game()->player.rotate += -1;
+	if (key == 32)// SPACE
+	{
+		game()->player.moving = 1;
+		game()->player.minimap = true;
+	}
 	return (0);
 }
 
@@ -47,5 +52,6 @@ int	input_release(int key)
 		game()->player.rotate = 0;
 	if (key == 65361)// <-
 		game()->player.rotate = 0;
+	game()->player.moving = 0;
 	return (0);
 }
