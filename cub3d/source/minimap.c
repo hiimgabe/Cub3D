@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:42:03 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/14 14:53:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/14 16:09:45 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,23 @@ static t_pos	center_pos(t_pos pos, int size)
 static void	draw_player()
 {
 	t_pos	centered_player;
+	t_pos	centered_player_map;
 
-	centered_player = center_pos(game()->player.pos, 5);
+	centered_player_map = convert_to_map(game()->player.pos);
+	centered_player = center_pos(convert_to_screen((t_pos){centered_player_map.x - 5.5, centered_player_map.y - 5.5}), 5);
 	draw_square(centered_player, 5, MINIMAP_P);
 }
 
 static void	draw_fov()
 {
 	t_pos	centered_pos;
+	t_pos	centered_pos_map;
 	t_pos	starting_pos;
 	t_pos	line1;
 	t_pos	line2;
 
-	centered_pos = center_pos(game()->player.pos, TILE_SIZE);
+	centered_pos_map = convert_to_map(game()->player.pos);
+	centered_pos = center_pos(convert_to_screen((t_pos){centered_pos_map.x - 5.5, centered_pos_map.y - 5.5}), TILE_SIZE);
 	starting_pos.x = centered_pos.x + game()->player.dir.x;
 	starting_pos.y = centered_pos.y + game()->player.dir.y;
 	line1.x = game()->player.dir.x - game()->player.cam.x;
@@ -88,9 +92,9 @@ void	draw_minimap()
 		while(game()->map->layout[y][++x])
 		{
 			if (game()->map->layout[y][x] == '1')
-				draw_square(convert_to_screen((t_pos){x, y}), 10, MINIMAP_W);
+				draw_square(convert_to_screen((t_pos){x - 5.5, y - 5.5}), 10, MINIMAP_W);
 			else if (game()->map->layout[y][x] == '0')
-				draw_square(convert_to_screen((t_pos){x, y}), 10, MINIMAP_F);
+				draw_square(convert_to_screen((t_pos){x - 5.5, y - 5.5}), 10, MINIMAP_F);
 		}
 	}
 	draw_player(); 
