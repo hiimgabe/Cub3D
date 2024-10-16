@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:42:03 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/14 16:09:45 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/16 18:59:26 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	draw_line(t_pos start, t_pos dir, int size, int color)
 	i = -1;
 	while (++i < size)
 	{
-		render_pixel((t_pos){start.x + dir.x, start.y + dir.y}, color);
+		render_pixel((t_pos){start.x, start.y}, color);
 		start.x += dir.x;
 		start.y += dir.y;
 	}
@@ -45,7 +45,7 @@ static t_pos	center_pos(t_pos pos, int size)
 	double	offset;
 
 	offset = (double)size / 2;
-	return ((t_pos){pos.x + offset, pos.y + offset});
+	return ((t_pos){pos.x - offset, pos.y - offset});
 }
 
 static void	draw_player()
@@ -54,7 +54,7 @@ static void	draw_player()
 	t_pos	centered_player_map;
 
 	centered_player_map = convert_to_map(game()->player.pos);
-	centered_player = center_pos(convert_to_screen((t_pos){centered_player_map.x - 5.5, centered_player_map.y - 5.5}), 5);
+	centered_player = center_pos(convert_to_screen(centered_player_map), 5);
 	draw_square(centered_player, 5, MINIMAP_P);
 }
 
@@ -62,26 +62,22 @@ static void	draw_fov()
 {
 	t_pos	centered_pos;
 	t_pos	centered_pos_map;
-	t_pos	starting_pos;
 	t_pos	line1;
 	t_pos	line2;
 
 	centered_pos_map = convert_to_map(game()->player.pos);
-	centered_pos = center_pos(convert_to_screen((t_pos){centered_pos_map.x - 5.5, centered_pos_map.y - 5.5}), TILE_SIZE);
-	starting_pos.x = centered_pos.x + game()->player.dir.x;
-	starting_pos.y = centered_pos.y + game()->player.dir.y;
+	centered_pos = center_pos(convert_to_screen(centered_pos_map), TILE_SIZE);
 	line1.x = game()->player.dir.x - game()->player.cam.x;
 	line1.y = game()->player.dir.y - game()->player.cam.y;
 	line2.x = game()->player.dir.x + game()->player.cam.x;
 	line2.y = game()->player.dir.y + game()->player.cam.y;
-	draw_line(starting_pos, line1, 30, MINIMAP_P);
-	draw_line(starting_pos, game()->player.dir, 30, MINIMAP_P);
-	draw_line(starting_pos, line2, 30, MINIMAP_P);
+	draw_line(centered_pos, line1, 30, MINIMAP_P);
+	draw_line(centered_pos, game()->player.dir, 30, MINIMAP_P);
+	draw_line(centered_pos, line2, 30, MINIMAP_P);
 }
 
 void	draw_minimap()
 {
-	// iterate through map layout
 	int		y;
 	int		x;
 	
@@ -92,9 +88,9 @@ void	draw_minimap()
 		while(game()->map->layout[y][++x])
 		{
 			if (game()->map->layout[y][x] == '1')
-				draw_square(convert_to_screen((t_pos){x - 5.5, y - 5.5}), 10, MINIMAP_W);
+				draw_square(convert_to_screen((t_pos){x, y}), 10, MINIMAP_W);
 			else if (game()->map->layout[y][x] == '0')
-				draw_square(convert_to_screen((t_pos){x - 5.5, y - 5.5}), 10, MINIMAP_F);
+				draw_square(convert_to_screen((t_pos){x, y}), 10, MINIMAP_F);
 		}
 	}
 	draw_player(); 

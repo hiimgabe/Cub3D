@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/11 13:32:14 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/16 18:53:16 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+long	get_time()
+{
+	struct timeval	curr_time;
+
+	gettimeofday(&curr_time, NULL);
+	return ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));
+}
 
 int is_space(char c)
 {

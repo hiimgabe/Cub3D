@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/14 15:42:12 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/16 17:23:21 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "../include/libft/libft.h"
 # include "../include/minilibx-linux/mlx.h"
+# include <sys/time.h>
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdlib.h>
@@ -42,8 +43,8 @@
 #define	RENDER_DIST	20
 #define	SCREEN_W		800
 #define	SCREEN_H		800
-#define	MOVEMENTSPEED	0.300
-#define	ROTSPEED		0.025
+#define	MOVEMENTSPEED	0.400
+#define	ROTSPEED		0.030
 #define	MINIMAP_W		0x202060
 #define MINIMAP_F		0x5BC8AF
 #define MINIMAP_P		0xFF00FF
@@ -208,6 +209,7 @@ void	free_matrix(char **matrix);
 void	start_game();
 bool	is_floor(char c);
 bool	is_wall(char c);
+long	get_time();
 
 /*------------------input.c------------------*/
 

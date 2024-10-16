@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
+#    By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/10/08 10:50:20 by gabe             ###   ########.fr        #
+#    Updated: 2024/10/16 17:36:49 by gamoreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -I $(MLX_DIR)
 #                                     FLAGS                                    #
 ################################################################################
 
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -Ilmlx -lXext -lX11
 MAKE = make -C
@@ -55,7 +55,7 @@ PURPLE		= \033[38;5;93m
 ORANGE		= \033[38;5;202m
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@cc $(CFLAGS) -g -c $< -o $@
+	cc $(CFLAGS) -g -c $< -o $@
 	@echo "[${GREEN}compiling${RESET}]: $<"
 
 all: $(NAME)
@@ -67,7 +67,7 @@ ${OBJ_DIR}:
 $(NAME): $(OBJ)
 	@$(MAKE) $(LIBFT_DIR)
 	@$(MAKE) $(MLX_DIR)
-	@cc $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	cc $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 	@echo "\n$(RED)          _____                    _____                    _____                    _____          $(RESET)"
 	@echo "$(RED)         /\    \                  /\    \                  /\    \                  /\    \         $(RESET)"
 	@echo "$(RED)        /::\    \                /::\____\                /::\    \                /::\    \        $(RESET)"
