@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/14 16:11:02 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/16 18:54:24 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ void	render_ceiling()
 	{
 		x = -1;
 		while (++x < SCREEN_W)
-		{
-			//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
-			render_pixel((t_pos){x, y}, shader_ceiling(y, game()->texture_info->c));
-		}
+			render_pixel((t_pos){x, y}, shader_ceiling(y, game()->texture_info->c));//printf("Rendering at %d, %d with color %d\n", y, x, game()->texture_info->c);
 	}
 }
 
@@ -80,9 +77,14 @@ void	clear_screen()
 
 int	render_game(void)
 {
+	long int	old_time;
+	long int	curr_time;
+	double		fps;
+	
+	old_time = get_time();
 	game()->player.moving += move_player();
-	if (game()->player.moving == 0)
-		return (0);
+	//if (game()->player.moving == 0)
+	//	return (0);
 	clear_screen();
 	render_ceiling();
 	render_floor();
@@ -90,6 +92,10 @@ int	render_game(void)
 	if (game()->player.minimap)
 		draw_minimap();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buffer.img, 0, 0);
+	curr_time = get_time();
+	fps = (curr_time - old_time) / 1000.0;
+	fps = 1.0 / fps;
+	mlx_string_put(game()->mlx, game()->mlx_win, 0, 800, 0xFFFFFF , ft_itoa(fps));
 	game()->player.moving = 0;
 	return (0);
 }
