@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/16 17:23:21 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/17 21:36:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,5 +244,6 @@ int	rotate_camera(t_rotation rotation);
 
 /*minimap*/
 void	draw_minimap();
+char	*ft_dtoa(double n, int decimal_n);
 
 #endif

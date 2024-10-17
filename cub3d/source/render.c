@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/16 18:54:24 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/17 21:38:32 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	render_game(void)
 	long int	old_time;
 	long int	curr_time;
 	double		fps;
+	char		*fps_a;
 	
 	old_time = get_time();
 	game()->player.moving += move_player();
@@ -95,7 +96,10 @@ int	render_game(void)
 	curr_time = get_time();
 	fps = (curr_time - old_time) / 1000.0;
 	fps = 1.0 / fps;
-	mlx_string_put(game()->mlx, game()->mlx_win, 0, 800, 0xFFFFFF , ft_itoa(fps));
+	fps_a = ft_dtoa(fps, 3);
+	mlx_string_put(game()->mlx, game()->mlx_win, 0, 800, 0xFFFFFF , fps_a);
+	free(fps_a);
 	game()->player.moving = 0;
 	return (0);
 }
+
