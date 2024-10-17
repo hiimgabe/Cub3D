@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+         #
+#    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/10/16 17:36:49 by gamoreir         ###   ########.fr        #
+#    Updated: 2024/10/17 00:03:45 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 
 NAME = cub3d
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./include/libft/
 MLX_DIR = ./include/minilibx-linux/
 MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -I $(MLX_DIR)
@@ -39,7 +39,7 @@ MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -lXext -lX11 -I $(MLX_DIR)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 MLXFLAGS = -L $(MLX_DIR) -lm -lmlx -Ilmlx -lXext -lX11
-MAKE = make -C
+MAKE = make -s -C 
 
 ################################################################################
 #                                    RULES                                     #
@@ -55,7 +55,7 @@ PURPLE		= \033[38;5;93m
 ORANGE		= \033[38;5;202m
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	cc $(CFLAGS) -g -c $< -o $@
+	@cc $(CFLAGS) -g -c $< -o $@
 	@echo "[${GREEN}compiling${RESET}]: $<"
 
 all: $(NAME)
@@ -66,8 +66,8 @@ ${OBJ_DIR}:
 
 $(NAME): $(OBJ)
 	@$(MAKE) $(LIBFT_DIR)
-	@$(MAKE) $(MLX_DIR)
-	cc $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	@$(MAKE) $(MLX_DIR) > /dev/null 2>&1
+	@cc $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 	@echo "\n$(RED)          _____                    _____                    _____                    _____          $(RESET)"
 	@echo "$(RED)         /\    \                  /\    \                  /\    \                  /\    \         $(RESET)"
 	@echo "$(RED)        /::\    \                /::\____\                /::\    \                /::\    \        $(RESET)"
@@ -93,16 +93,17 @@ $(NAME): $(OBJ)
 
 
 clean:
-	$(MAKE) $(LIBFT_DIR) clean
-	$(MAKE) $(MLX_DIR) clean
+	@$(MAKE) $(LIBFT_DIR) clean
+	@$(MAKE) $(MLX_DIR) clean > /dev/null 2>&1
 	@rm -rf $(OBJ_DIR)
+	@echo "${YELLOW}Cleaning objects.${RESET}"
 
 fclean: clean
-	$(MAKE) $(LIBFT_DIR) fclean
-	$(RM) -f $(NAME)
-	@echo " \n$(RED)::::: Removing $(NAME) executable ::::: $(RESET)\n "
+	@$(MAKE) $(LIBFT_DIR) fclean
+	@$(RM) -f $(NAME)
+	@echo "$(RED)$(NAME) deleted.$(RESET)"
 
 re: fclean all
-	@echo "[$(GREEN)DONE$(RESET)]: $(GREEN)Cub3d$(RESET)"
+	@echo "$(GREEN)Cub3d$(RESET) $(GREEN)compiled.$(RESET)"
 
 .PHONY: all clean fclean re deps
