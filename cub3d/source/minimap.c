@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:42:03 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/16 18:59:26 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:24:55 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	draw_fov()
 	t_pos	line2;
 
 	centered_pos_map = convert_to_map(game()->player.pos);
-	centered_pos = center_pos(convert_to_screen(centered_pos_map), TILE_SIZE);
+	centered_pos = center_pos(convert_to_screen(centered_pos_map), 1);
 	line1.x = game()->player.dir.x - game()->player.cam.x;
 	line1.y = game()->player.dir.y - game()->player.cam.y;
 	line2.x = game()->player.dir.x + game()->player.cam.x;

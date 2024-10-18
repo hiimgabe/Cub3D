@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 10:33:14 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/14 16:11:22 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/18 15:06:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	load_player()
 	game()->map->layout[(int)map_pos.y][(int)map_pos.x] = '0';
 	game()->player.moving = 1;
 	game()->player.minimap = false;
+	game()->player.fps = false;
 	game()->player.x = 0;
 	game()->player.y = 0;
 	game()->player.rotate = 0;
