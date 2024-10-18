@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/17 21:36:23 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/18 15:12:33 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct	s_player
 	t_pos	cam;
 	char	compass;
 	bool	minimap;
+	bool	fps;
 	int		y;
 	int		x;
 	int		moving;
@@ -245,5 +246,7 @@ int	rotate_camera(t_rotation rotation);
 /*minimap*/
 void	draw_minimap();
 char	*ft_dtoa(double n, int decimal_n);
+
+void	show_fps(long int old_time);
 
 #endif

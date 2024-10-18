@@ -6,13 +6,14 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 02:10:01 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/17 02:39:46 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/17 22:20:35 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <math.h>
 
 int	int_cnt(int intpart)
 {
@@ -58,13 +59,16 @@ int	*dtoa_size(double n, int decimal_n)
 void	decimal_placer(char *res, double dbpart, int decimal_n, int t_size)
 {
 	int	inthelper;
+	int	power;
 
+	power = pow(10, decimal_n);
+	dbpart *= power;
+	inthelper = (int)dbpart;
 	while (decimal_n > 0)
 	{
-		dbpart = dbpart * 10;
-		inthelper = (int)dbpart;
-		res[t_size - decimal_n + 1] = inthelper + '0';
-		dbpart -= inthelper;
+		res[t_size] = (inthelper % 10) + '0';
+		t_size--;
+		inthelper /= 10;
 		decimal_n--;
 	}
 }
@@ -98,14 +102,21 @@ char	*ft_dtoa(double n, int decimal_n)
 	return (res);
 }
 
-int	main(void)
+int main()
 {
-	double	dbnumber;
-	char	*holymoly;
+	double	n = 123.123;
+	int		intpart;
+	char *test;
 
-	dbnumber = 45.12345;
-	holymoly = ft_dtoa(dbnumber, 5);
-	printf("%s\n", holymoly);
-	free(holymoly);
+	int	casasdecimais;
+
+	test = ft_dtoa(123.123, 3);
+
+	casasdecimais = 1 * 1000;
+
+	intpart = (int)n;
+	n = n - intpart;
+	intpart = (int)(n * 1000);
+	printf("%d\n", test[7]);
 	return (0);
 }

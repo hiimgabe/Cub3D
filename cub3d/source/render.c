@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:47:32 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/17 21:38:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/18 15:38:16 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ void	clear_screen()
 int	render_game(void)
 {
 	long int	old_time;
-	long int	curr_time;
-	double		fps;
-	char		*fps_a;
-	
+
 	old_time = get_time();
 	game()->player.moving += move_player();
 	//if (game()->player.moving == 0)
@@ -93,12 +90,8 @@ int	render_game(void)
 	if (game()->player.minimap)
 		draw_minimap();
 	mlx_put_image_to_window(game()->mlx, game()->mlx_win, game()->screen_buffer.img, 0, 0);
-	curr_time = get_time();
-	fps = (curr_time - old_time) / 1000.0;
-	fps = 1.0 / fps;
-	fps_a = ft_dtoa(fps, 3);
-	mlx_string_put(game()->mlx, game()->mlx_win, 0, 800, 0xFFFFFF , fps_a);
-	free(fps_a);
+	if (game()->player.fps)
+		show_fps(old_time);
 	game()->player.moving = 0;
 	return (0);
 }
