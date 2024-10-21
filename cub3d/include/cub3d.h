@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/18 15:12:33 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 17:31:51 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,5 +248,6 @@ void	draw_minimap();
 char	*ft_dtoa(double n, int decimal_n);
 
 void	show_fps(long int old_time);
+void	exit_free();
 
 #endif

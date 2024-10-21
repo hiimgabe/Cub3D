@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 15:49:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	invalid_characters(char *line)
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0'
 			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E' && line[i] != '\n')
 				return (0);
-			i++;
+		i++;
 	}
 	return (1);
 }
@@ -87,6 +87,26 @@ static int	invalid_borders(char *line)
 	return (1);
 }
 
+static int	player_check(char **map)
+{
+	int	i;
+	int	j;
+	int	player;
+
+	i = -1;
+	player = 0;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'S')
+				player++;
+	}
+	if (player != 1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int map_conditions(char **layout)
 {
     int x;
@@ -101,14 +121,14 @@ int map_conditions(char **layout)
     while (layout[x])
     {
         if (!invalid_characters(layout[x]))
-            return (ft_putstr_fd("Error: invalid map elements2.\n", 2), 1);
-
-
+            return (ft_putstr_fd("Error: invalid map elements.\n", 2), 1);
         if (!invalid_borders(layout[x]))
             return (ft_putstr_fd("Error: invalid map BORDERS.\n", 2), 1);
         x++;
     }
 	x--;
+	if (player_check(layout))
+		return(ft_putstr_fd("Error: player not found.\n", 2), 1);
 	if (!top_bottom_walls(layout[x]))
 		return (ft_putstr_fd("Error: invalid bottom wall elements.\n", 2), 1);
     return (0);

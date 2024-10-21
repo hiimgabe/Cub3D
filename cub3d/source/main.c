@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/14 15:44:34 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 17:24:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	if (file_check(argv[1], ".cub", fd))
 	{
 		close(fd);
-		return (EXIT_FAILURE);
+		exit_free();
 	}
 	init_game();
 	if (parse_data(argv[1]))
@@ -59,3 +59,7 @@ int	main(int argc, char **argv)
 	free_game();
 	return (EXIT_SUCCESS);
 }
+/*
+	if dir + plane == '1' && dir - plane == '1'
+		don't walk 
+*/

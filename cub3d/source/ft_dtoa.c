@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 02:10:01 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/17 22:22:19 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 18:46:28 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_dtoa(double n, int decimal_n)
 	double	dbpart;
 
 	size = dtoa_size(n, decimal_n);
-	res = malloc(sizeof(char) * (size[0] + size[1] + 3));
+	res = ft_calloc(1, sizeof(char) * (size[0] + size[1] + 3));
 	if (n < 0)
 	{
 		res[0] = '-';

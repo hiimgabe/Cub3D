@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 15:40:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 19:10:03 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static int	textures_validation(char *map)
 {
 	int		fd;
 	char	*line;
+	int		order;
 
+	order = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (error_exit("Invalid map file.\n"), EXIT_FAILURE);
@@ -54,9 +56,11 @@ static int	textures_validation(char *map)
 		if (line)
 			free(line);
 		if (check_order())
-			return (error_exit("Make sure textures and colors exist and are in the correct order.\nTextures order: SO->NO->WE->EA->F->C\n"), EXIT_FAILURE);
+			order++;
 		line = get_next_line(fd);
 	}
+	if (order != 0)
+		return (error_exit("Make sure textures and colors exist and are in the correct order.\nTextures order: SO->NO->WE->EA->F->C\n"), EXIT_FAILURE);
 	if (check_xpm() || check_colors())
 		return (error_exit("Make sure textures files and colors exist in the provided file and are in the correct format(XPM for textures and RGB for colors).\n"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
