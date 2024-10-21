@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:13:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 19:14:30 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	parse_map_textures(char *line)
 
 	init_textures(textures);
 	trim = trim_map_texture(line, textures);
+	printf("\nTEXTURE AT : %s\n", trim);
 	if (trim[0] == 'S' && trim[1] == 'O')
 		clean_assign(&trim[2], &game()->map->so);
 	else if (trim[0] == 'N' && trim[1] == 'O')

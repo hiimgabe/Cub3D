@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/18 15:08:36 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 17:42:20 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	handle_input(int key)
 {
 	if (key == 65307)
-		exit(42);
+		exit_free(42);
 	if (key == 119)// W
 		game()->player.y += 1;
 	if (key == 97)// A
@@ -38,7 +38,7 @@ int	handle_input(int key)
 int	input_release(int key)
 {
 	if (key == 65307)
-		exit(42);
+		exit_free(42);
 	if (key == 119 && game()->player.y >= 1)// W
 		game()->player.y = 0;
 	if (key == 97 && game()->player.x <= -1)// A

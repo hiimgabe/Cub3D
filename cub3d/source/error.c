@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 18:55:52 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	file_error(int fd)
 void	error_exit(char *error)
 {
 	ft_putstr_fd(error, 2);
-    free_game();
-	exit(EXIT_FAILURE);
+	exit_free();
 }
