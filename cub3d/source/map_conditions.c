@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/08 10:25:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 15:39:18 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	invalid_characters(char *line)
 {
 	int	i;
+	int	player;
 
 	i = 0;
 	if (!line)
@@ -24,8 +25,12 @@ static int	invalid_characters(char *line)
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0'
 			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E' && line[i] != '\n')
 				return (0);
-			i++;
+		else if (line[i] == 'N' || line[i] == 'S' || line [i] == 'W' || line[i] == 'E')
+			player++;
+		i++;
 	}
+	if (player != 1)
+		return (0);
 	return (1);
 }
 
@@ -101,7 +106,7 @@ int map_conditions(char **layout)
     while (layout[x])
     {
         if (!invalid_characters(layout[x]))
-            return (ft_putstr_fd("Error: invalid map elements2.\n", 2), 1);
+            return (ft_putstr_fd("Error: invalid map elements.\n", 2), 1);
 
 
         if (!invalid_borders(layout[x]))
