@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:49:30 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/21 18:01:24 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 19:51:16 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static int	*load_texture(char *path)
 	y = -1;
 	img.img = mlx_xpm_file_to_image(game()->mlx, path, &(game()->texture_info->size), &(game()->texture_info->size));
 	if (!img.img)
-		error_exit("img.img");
+		error_exit("Error: Invalid file to img\n", NULL);
 	img.addr = (int *)mlx_get_data_addr(img.img, &img.bpp, &img.size_line, &img.endian);
 	buff = ft_calloc(1, sizeof(int) * game()->texture_info->size * game()->texture_info->size);
 	if (!buff)
-		error_exit("texture buffer error");
+		error_exit("texture buffer error", NULL);
 	while (++y < game()->texture_info->size)
 	{
 		x = -1;

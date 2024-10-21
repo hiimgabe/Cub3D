@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/21 17:31:51 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/21 19:50:17 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,6 @@ t_game	*game(void);
 
 int	map_error(char *file);
 int	file_error(int fd);
-void	error_exit(char *error);
 
 /*-------- Map validation functions ----------*/
 
@@ -198,7 +197,7 @@ void free_game();
 void print_map(char **layout);
 int	parse_data(char *argv);
 void	init_game(void);
-void	error_exit(char *error);
+void	error_exit(char *error, char *file);
 
 /*----------------- utils -------------------*/
 int	is_space(char c);
