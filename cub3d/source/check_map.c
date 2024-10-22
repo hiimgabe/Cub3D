@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 19:33:57 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:57:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,6 @@ size_t	matrix_len(char **matrix)
 	while (matrix[i])
 		i++;
 	return (i);
-}
-
-void	print_map(t_pos err_pos)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	printf("x %f y %f\n", err_pos.x, err_pos.y);
-	while (game()->map->layout[++i])
-	{
-		j = -1;
-		while (game()->map->layout[i][++j])
-		{
-			if (i == err_pos.x && j == err_pos.y)
-				printf("%s%c%s", RED, game()->map->layout[i][j], RESET);
-			else
-				printf("%c", game()->map->layout[i][j]);
-		}
-	}
-	printf("\n");
 }
 
 static bool	only_walls(char *line)
@@ -105,5 +84,4 @@ void	check_map(char **map)
 		if (!is_surrounded(map, i))
 			error_exit(ERR_MAPSURR, NULL);
 	}
-	//print_map((t_pos){1, 1});
 }

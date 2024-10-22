@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 13:18:23 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:53:59 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,3 @@ int	main(int argc, char **argv)
 	free_game();
 	return (EXIT_SUCCESS);
 }
-/*
-	if dir + plane == '1' && dir - plane == '1'
-		don't walk 
-*/
