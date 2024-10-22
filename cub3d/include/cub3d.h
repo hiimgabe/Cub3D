@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 14:49:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 16:45:50 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@
 # define ERR_FILETOIMG	"Error: Failed to convert file to img.\n"
 # define ERR_TXTBUFF		"Error: Failed to init texture buffer.\n"
 # define ERR_NOMAP		"Error: Please provide a map file.\n"
-# define ERR_MAPLAYOUT	"Error: Invalud map layout.\n"
+# define ERR_MAPLAYOUT	"Error: Invalid map layout.\n"
 # define ERR_EMPTYMAP	"Error: Map is empty.\n"
 # define ERR_MAPBORD		"Error: Invalid map borders.\n"
 # define ERR_MAPWALLS	"Error: Invalid map walls.\n"
 # define ERR_MAPELE		"Error: Invalid map elements.\n"
-# define ERR_PNOTFND		"Error: Player not found.\n"
+# define ERR_PNOTFND		"Error: Invalid Player.\n"
+# define ERR_MAPWALLE	"Error: Empty line inside map.\n"
+# define ERR_MAPSURR	"Error: Map isn't surrounded by walls.\n"
 
 typedef enum e_diagonal
 {
@@ -180,20 +182,32 @@ typedef struct s_game
 }				t_game;
 
 t_game	*game(void);
+t_pos	convert_to_screen(t_pos pos);
+t_pos	convert_to_map(t_pos screen_pos);
 void	init_mlx(void);
 void	init_game(void);
 void	load_textures(void);
 void	load_player(void);
+void	free_game(void);
+void	exit_free(void);
+void	start_game(void);
+void	draw_player(void);
+void	draw_square(t_pos pos, int size, int color);
+void	draw_fov(void);
+void	draw_minimap(void);
+void	render_texture(t_ray *ray, int x);
+void	raycast(void);
+void	render_pixel(t_pos pos, int color);
+void	free_matrix(char **matrix);
+void	show_fps(long int old_time);
+void	check_map(char **map);
 int		handle_input(int key);
 int		input_release(int key);
-void	free_game(void);
 char	*ft_dtoa(double n, int decimal_n);
 int		is_space(char c);
 bool	is_floor(char c);
 bool	is_wall(char c);
-void	exit_free(void);
 int		parse_data(char *argv);
-void	start_game(void);
 char	**get_map(char *file);
 int		valid_map(char *file);
 int		invalid_characters(char *line);
@@ -202,31 +216,23 @@ int		invalid_walls(char **layout);
 int		invalid_borders(char *line);
 int		player_check(char **map);
 int		map_conditions(char **layout);
-void	draw_player(void);
-void	draw_square(t_pos pos, int size, int color);
-void	draw_fov(void);
-void	draw_minimap(void);
 int		check_move(t_pos move);
-void	render_texture(t_ray *ray, int x);
-void	raycast(void);
-void	render_pixel(t_pos pos, int color);
 int		render_game(void);
 int		rotate_camera(t_rotation rotation);
 int		shader_floor(int dist, int color);
 int		shader_ceiling(int dist, int color);
 void	parse_map_textures(char *line);
-t_pos	convert_to_screen(t_pos pos);
 int		shader(double wall_dist, int color);
-t_pos	convert_to_map(t_pos screen_pos);
 int		file_check(char *file, char *ext, int fd);
 void	error_exit(char *error, char *file);
 int		check_xpm(void);
 int		check_order(void);
 int		check_colors(void);
 int		get_trgb(int t, int r, int g, int b);
-void	free_matrix(char **matrix);
 long	get_time(void);
 int		move_player(void);
-void	show_fps(long int old_time);
+
+
+void	print_map(t_pos err_pos);
 
 #endif

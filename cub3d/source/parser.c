@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 14:46:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 16:51:42 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,23 @@ static void	check_elements(void)
 	check_file(game()->map->ea);
 }
 
+static void	replace_mapspace(void)
+{
+	int		i;
+	int		j;
+	char	**map;
+
+	i = -1;
+	map = game()->map->layout;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+	}
+}
+
 int	parse_data(char *argv)
 {
 	if (textures_validation(argv))
@@ -94,5 +111,8 @@ int	parse_data(char *argv)
 	if (valid_map(argv))
 		return (error_exit(ERR_MAPVALID, NULL), EXIT_FAILURE);
 	check_elements();
+	replace_mapspace();
+	//print_map((t_pos){1, 1});
+	check_map(game()->map->layout);
 	return (EXIT_SUCCESS);
 }
