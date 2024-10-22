@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 02:10:01 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/21 18:46:28 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 13:43:42 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	int_cnt(int intpart)
+static int	int_cnt(int intpart)
 {
 	int	size;
 
@@ -27,7 +27,7 @@ int	int_cnt(int intpart)
 	return (size);
 }
 
-int	*dtoa_size(double n, int decimal_n)
+static int	*dtoa_size(double n, int decimal_n)
 {
 	int		*size;
 	int		intpart;
@@ -53,7 +53,7 @@ int	*dtoa_size(double n, int decimal_n)
 	return (size);
 }
 
-void	decimal_placer(char *res, double dbpart, int decimal_n, int t_size)
+static void	decimal_placer(char *res, double dbpart, int decimal_n, int t_size)
 {
 	int	inthelper;
 	int	power;

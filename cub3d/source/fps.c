@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   fps.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 13:21:13 by gabe             ###   ########.fr       */
+/*   Created: 2024/10/22 12:27:31 by gabe              #+#    #+#             */
+/*   Updated: 2024/10/22 12:27:52 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	valid_map(char *file)
+void	show_fps(long int old_time)
 {
-	game()->map->layout = get_map(file);
-	if (!game()->map->layout)
-		return (error_exit(ERR_INVMAPF, NULL), 1);
-	if (map_conditions(game()->map->layout))
-		return (error_exit(ERR_MAPLAYOUT, NULL), 1);
-	return (0);
+	long int	curr_time;
+	double		fps;
+	char		*fps_a;
+
+	curr_time = get_time();
+	fps = (curr_time - old_time) / 1000.0;
+	fps = 1.0 / fps;
+	fps_a = ft_dtoa(fps, 3);
+	mlx_string_put(game()->mlx, game()->mlx_win, 5, 795, 0xFFFFFF, fps_a);
+	free(fps_a);
+}
+
+long	get_time(void)
+{
+	struct timeval	curr_time;
+
+	gettimeofday(&curr_time, NULL);
+	return ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));
 }

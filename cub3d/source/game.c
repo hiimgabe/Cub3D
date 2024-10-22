@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:32:55 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/08 15:56:25 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 12:43:40 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	start_game()
+void	start_game(void)
 {
 	init_mlx();
 	load_textures();

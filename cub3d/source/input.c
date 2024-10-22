@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/21 17:42:20 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 12:38:13 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 int	handle_input(int key)
 {
 	if (key == 65307)
-		exit_free(42);
-	if (key == 119)// W
+		exit_free();
+	if (key == 119)
 		game()->player.y += 1;
-	if (key == 97)// A
+	if (key == 97)
 		game()->player.x += -1;
-	if (key == 115)// S
+	if (key == 115)
 		game()->player.y += -1;
-	if (key == 100)// D
+	if (key == 100)
 		game()->player.x += 1;
-	if (key == 65363)// ->
+	if (key == 65363)
 		game()->player.rotate += 1;
-	if (key == 65361)// <-
+	if (key == 65361)
 		game()->player.rotate += -1;
-	if (key == 32)// SPACE
+	if (key == 32)
 		game()->player.minimap = !game()->player.minimap;
-	if (key == 102)// F
+	if (key == 102)
 		game()->player.fps = !game()->player.fps;
 	return (0);
 }
@@ -38,18 +38,18 @@ int	handle_input(int key)
 int	input_release(int key)
 {
 	if (key == 65307)
-		exit_free(42);
-	if (key == 119 && game()->player.y >= 1)// W
+		exit_free();
+	if (key == 119 && game()->player.y >= 1)
 		game()->player.y = 0;
-	if (key == 97 && game()->player.x <= -1)// A
+	if (key == 97 && game()->player.x <= -1)
 		game()->player.x = 0;
-	if (key == 115 && game()->player.y <= -1)// S
+	if (key == 115 && game()->player.y <= -1)
 		game()->player.y = 0;
-	if (key == 100 && game()->player.x >= 1)// D
+	if (key == 100 && game()->player.x >= 1)
 		game()->player.x = 0;
-	if (key == 65363)// ->
+	if (key == 65363)
 		game()->player.rotate = 0;
-	if (key == 65361)// <-
+	if (key == 65361)
 		game()->player.rotate = 0;
 	game()->player.moving = 0;
 	return (0);

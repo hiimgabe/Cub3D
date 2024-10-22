@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/21 17:24:23 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 13:18:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_game	*game(void)
 	return (&game);
 }
 
-static void	print_instructions()
+static void	print_instructions(void)
 {
 	printf(RED"	           ____  ____\n"RESET);
 	printf(RED" ____  _   _  ___ |__  ||  _ \\\n"RESET);
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	fd = 0;
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error: no map file provided.\n", 2);
+		ft_putstr_fd(ERR_NOMAP, 2);
 		return (1);
 	}
 	if (file_check(argv[1], ".cub", fd))

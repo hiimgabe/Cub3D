@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:10:00 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/09/17 12:42:33 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 14:52:55 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,3 @@ char	**ft_split(char const *str, char c)
 	res[w] = 0;
 	return (res);
 }
-
-
-/*
-int main(void)
-{
-	char **res;
-	size_t i = 0;
-	res = ft_split("eu sou eu sou", ' ');
-	while (i < count_words("eu sou eu sou", ' '))
-	{
-		printf("%s\n", res[i]);
-		i += 1;
-	}
-}
-*/
