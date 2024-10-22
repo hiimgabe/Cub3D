@@ -6,23 +6,11 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:42:56 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 13:45:46 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:20:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static t_map	*init_map(t_map *map)
-{
-	map->layout = NULL;
-	map->no = NULL;
-	map->so = NULL;
-	map->we = NULL;
-	map->ea = NULL;
-	map->f = NULL;
-	map->c = NULL;
-	return (map);
-}
 
 void	init_game(void)
 {
@@ -32,7 +20,7 @@ void	init_game(void)
 	(game())->texture_info = ft_calloc(1, sizeof(t_texture_info));
 	if (!game()->texture_info)
 		error_exit(ERR_TXTINFO, NULL);
-	game()->map = init_map(game()->map);
+	game()->map->layout = NULL;
 	(game())->textures = ft_calloc(5, sizeof(int *));
 }
 

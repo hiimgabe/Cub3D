@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 13:23:52 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:25:03 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	invalid_borders(char *line)
 		i++;
 	if (line[i] != '1')
 		return (error_exit(ERR_MAPBORD, NULL), 0);
-	j = ft_strlen(line) - 2;
+	j = ft_strlen(line) - 1;
 	while (line[j] == ' ')
 		j--;
 	if (line[j] != '1')
@@ -101,7 +101,7 @@ int	player_check(char **map)
 		j = -1;
 		while (map[i][++j])
 			if (map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'S')
+				|| map[i][j] == 'E' || map[i][j] == 'W')
 				player++;
 	}
 	if (player != 1)
