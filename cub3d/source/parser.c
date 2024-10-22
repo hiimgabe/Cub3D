@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 16:51:42 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:27:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	parse_data(char *argv)
 		return (error_exit(ERR_MAPVALID, NULL), EXIT_FAILURE);
 	check_elements();
 	replace_mapspace();
-	//print_map((t_pos){1, 1});
 	check_map(game()->map->layout);
 	return (EXIT_SUCCESS);
 }

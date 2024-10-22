@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 15:27:10 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:25:03 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	invalid_borders(char *line)
 		i++;
 	if (line[i] != '1')
 		return (error_exit(ERR_MAPBORD, NULL), 0);
-	j = ft_strlen(line) - 2;
+	j = ft_strlen(line) - 1;
 	while (line[j] == ' ')
 		j--;
 	if (line[j] != '1')

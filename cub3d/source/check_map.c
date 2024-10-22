@@ -6,11 +6,21 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 17:05:30 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:33:57 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+size_t	matrix_len(char **matrix)
+{
+	size_t	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	return (i);
+}
 
 void	print_map(t_pos err_pos)
 {
@@ -18,6 +28,7 @@ void	print_map(t_pos err_pos)
 	int	j;
 
 	i = -1;
+	printf("x %f y %f\n", err_pos.x, err_pos.y);
 	while (game()->map->layout[++i])
 	{
 		j = -1;
@@ -48,36 +59,21 @@ static bool	only_walls(char *line)
 static bool	check_surround(char *top, char *curr, char *down, int i)
 {
 	size_t	j;
-	size_t	len;
 
 	j = -1;
-	len = ft_strlen(curr) - 1;
-	printf("curr[len - 2] = %c\n", curr[len - 2]);
-	while (++j < len)
+	while (curr[++j] && curr[i] != 10)
 	{
-		if (curr[0] != '1' || curr[ft_strlen(curr) - 2] != '1')
-		{
-			printf("check 1 i %d j %ld curr %c last %c\n", i, j, curr[i], curr[ft_strlen(curr) - 1]);
-			print_map((t_pos){i, j});
+		if (curr[0] != '1' && (curr[ft_strlen(curr) - 1] != '1'))
 			return (false);
-		}
 		if (top && ft_strlen(curr) > ft_strlen(top) && j > ft_strlen(top) - 1 && curr[j] != '1')
-		{
-			printf("check 2 i %d j %ld curr %c\n", i, j, curr[j]);
-			print_map((t_pos){i, j});
 			return (false);
-		}
 		if (down && ft_strlen(curr) > ft_strlen(down) && j > ft_strlen(down) - 1 && curr[j] != '1')
-		{
-			printf("check 3 i %d j %ld curr %c\n", i, j, curr[i]);
-			print_map((t_pos){i, j});
 			return (false);
-		}
 	}
 	return (true);
 }
 
-static bool	is_surrounded(char **map, int i)
+static bool	is_surrounded(char **map, size_t i)
 {
 	char	*top;
 	char	*curr;
@@ -88,7 +84,7 @@ static bool	is_surrounded(char **map, int i)
 	down = NULL;
 	if (i > 0)
 		top = map[i - 1];
-	if (i < game()->map->map_height)
+	if (i < matrix_len(map))
 		down = map[i + 1];
 	return (check_surround(top, curr, down, i));
 }

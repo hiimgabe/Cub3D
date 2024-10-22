@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 14:28:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 19:22:17 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*copy_map_line(char *line, int length)
 {
 	char	*new_line;
 
-	new_line = ft_strndup(line, length);
+	new_line = ft_strndup(line, length - 1);
 	return (new_line);
 }
 
