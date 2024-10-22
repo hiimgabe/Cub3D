@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/21 19:50:17 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 14:49:32 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,52 +38,74 @@
 # include <math.h>
 
 /*MACROS*/
-#define	MAP_POS		50
-#define	TILE_SIZE	10
-#define	RENDER_DIST	20
-#define	SCREEN_W		800
-#define	SCREEN_H		800
-#define	MOVEMENTSPEED	0.400
-#define	ROTSPEED		0.030
-#define	MINIMAP_W		0x202060
-#define MINIMAP_F		0x5BC8AF
-#define MINIMAP_P		0xFF00FF
-#define RESET	"\033[0m"
-#define RED		"\033[38;5;196m"
-#define GREEN	"\033[38;5;47m"
-#define YELLOW	"\033[38;5;226m"
-#define BLUE	"\033[0;34m"
-#define PURPLE	"\033[38;5;93m"
-#define CYAN	"\033[1;36m"
-#define WHITE	"\033[37m"
-/*------------- Structures ---------------*/
+# define MAP_POS			50
+# define TILE_SIZE		10
+# define RENDER_DIST		20
+# define SCREEN_W		800
+# define SCREEN_H		800
+# define MOVEMENTSPEED	0.400
+# define ROTSPEED		0.030
+# define MINIMAP_W		0x202060
+# define MINIMAP_F		0x5BC8AF
+# define MINIMAP_P		0xFF00FF
+# define RESET	"\033[0m"
+# define RED		"\033[38;5;196m"
+# define GREEN	"\033[38;5;47m"
+# define YELLOW	"\033[38;5;226m"
+# define BLUE	"\033[0;34m"
+# define PURPLE	"\033[38;5;93m"
+# define CYAN	"\033[1;36m"
+# define WHITE	"\033[37m"
+# define ERR_TXTCLRORD	"Error: Texture order: SO->NO->WE->EA->F->C\n"
+# define ERR_TXTCLRFMT	"Error: Colors(r,g,b), files(xpm).\n"
+# define ERR_TXTINV		"Error: Invalid textures.\n"
+# define ERR_MISSINGTXT	"Error: Missing textures.\n"
+# define ERR_INVMAPF		"Error: Invalid map file.\n"
+# define ERR_FILENTFD	"Error: File not found\n"
+# define ERR_MAPVALID	"Error: Map validation error\n"
+# define ERR_STRUCTINIT	"Error: Failed to init map struct.\n"
+# define ERR_TXTINFO		"Error: Failed to init texture info struct.\n"
+# define ERR_MLXINIT		"Error: Failed to init mlx.\n"
+# define ERR_MLXWIN		"Error: Failed to init mlx win.\n"
+# define ERR_FILETOIMG	"Error: Failed to convert file to img.\n"
+# define ERR_TXTBUFF		"Error: Failed to init texture buffer.\n"
+# define ERR_NOMAP		"Error: Please provide a map file.\n"
+# define ERR_MAPLAYOUT	"Error: Invalud map layout.\n"
+# define ERR_EMPTYMAP	"Error: Map is empty.\n"
+# define ERR_MAPBORD		"Error: Invalid map borders.\n"
+# define ERR_MAPWALLS	"Error: Invalid map walls.\n"
+# define ERR_MAPELE		"Error: Invalid map elements.\n"
+# define ERR_PNOTFND		"Error: Player not found.\n"
 
-typedef enum {
+typedef enum e_diagonal
+{
 	TL,
 	TR,
 	BL,
 	BR
 }	t_diagonal;
 
-typedef	enum {
+typedef enum e_rotation
+{
 	RIGHT,
 	LEFT
 }	t_rotation;
 
-typedef enum {
+typedef enum e_compass
+{
 	NORTH,
 	SOUTH,
 	WEST,
 	EAST
 }	t_compass;
 
-typedef struct	s_pos
+typedef struct s_pos
 {
 	double	x;
 	double	y;
 }				t_pos;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char	**layout;
 	int		map_height;
@@ -95,7 +117,7 @@ typedef struct	s_map
 	char	*c;
 }				t_map;
 
-typedef	struct s_img
+typedef struct s_img
 {
 	void	*img;
 	int		*addr;
@@ -106,17 +128,17 @@ typedef	struct s_img
 
 typedef struct s_texture_info
 {
-	int	size;
-	int	index;
-	int	c;
-	int	f;
-	int	x;
-	int	y;
+	int		size;
+	int		index;
+	int		c;
+	int		f;
+	int		x;
+	int		y;
 	double	step;
 	double	pos;
 }				t_texture_info;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_pos	pos;
 	t_pos	dir;
@@ -131,7 +153,7 @@ typedef struct	s_ray
 	int		side;
 }				t_ray;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	t_pos	pos;
 	t_pos	dir;
@@ -145,7 +167,7 @@ typedef struct	s_player
 	int		rotate;
 }				t_player;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_map			*map;
 	t_texture_info	*texture_info;
@@ -155,98 +177,56 @@ typedef struct	s_game
 	void			*mlx_win;
 	void			*img;
 	int				**textures;
-	int				screenSizex;
-	int				screenSizey;
 }				t_game;
 
-/*------------- Init functions ---------------*/
-
 t_game	*game(void);
-t_map	*init_map(t_map *map);
+void	init_mlx(void);
 void	init_game(void);
-void	init_mlx();
-void	load_textures();
-
-/*------------- Parsing functions ---------------*/
-
-int	parse_data(char *argv);
-int file_check(char *file, char *ext, int fd);
-
-/*------------- Error functions ---------------*/
-
-t_game	*game(void);
-
-int	map_error(char *file);
-int	file_error(int fd);
-
-/*-------- Map validation functions ----------*/
-
-int map_lines(char *file);
-char *copy_map_line(char *line, int length);
-char **save_map(char **map, int fd);
-char	**get_map(char *file);
-int valid_map(char *file);
-int	map_conditions(char **layout);
-void	parse_map_textures(char *line);
-
-/*------------- Free functions ---------------*/
-void free_map(t_map *map);
-void free_game();
-
-/*------------- Debugging functions ---------------*/
-void print_map(char **layout);
-int	parse_data(char *argv);
-void	init_game(void);
-void	error_exit(char *error, char *file);
-
-/*----------------- utils -------------------*/
-int	is_space(char c);
-int	check_xpm();
-int	check_order();
-int	check_colors();
-int	get_trgb(int t, int r, int g, int b);
-void	free_matrix(char **matrix);
-void	start_game();
+void	load_textures(void);
+void	load_player(void);
+int		handle_input(int key);
+int		input_release(int key);
+void	free_game(void);
+char	*ft_dtoa(double n, int decimal_n);
+int		is_space(char c);
 bool	is_floor(char c);
 bool	is_wall(char c);
-long	get_time();
-
-/*------------------input.c------------------*/
-
-int	handle_input(int key);
-int	input_release(int key);
-
-
-/*------------------render.c------------------*/
-int		render_game(void);
+void	exit_free(void);
+int		parse_data(char *argv);
+void	start_game(void);
+char	**get_map(char *file);
+int		valid_map(char *file);
+int		invalid_characters(char *line);
+int		top_bottom_walls(char *line);
+int		invalid_walls(char **layout);
+int		invalid_borders(char *line);
+int		player_check(char **map);
+int		map_conditions(char **layout);
+void	draw_player(void);
+void	draw_square(t_pos pos, int size, int color);
+void	draw_fov(void);
+void	draw_minimap(void);
+int		check_move(t_pos move);
+void	render_texture(t_ray *ray, int x);
+void	raycast(void);
 void	render_pixel(t_pos pos, int color);
-
-/*-------------------player.c----------------*/
-void	load_player();
-
-/*-------------------raycast.c-----------------*/
-void	raycast();
-
-/*----------------utils_pos.c-------------------*/
+int		render_game(void);
+int		rotate_camera(t_rotation rotation);
+int		shader_floor(int dist, int color);
+int		shader_ceiling(int dist, int color);
+void	parse_map_textures(char *line);
 t_pos	convert_to_screen(t_pos pos);
+int		shader(double wall_dist, int color);
 t_pos	convert_to_map(t_pos screen_pos);
-
-/*texture utils*/
-
-int	shader(double wall_dist, int color);
-int	shader_floor(int dist, int color);
-int	shader_ceiling(int dist, int color);
-
-/*movement.c*/
-int	move_player();
-int	check_move(t_pos move);
-int	rotate_camera(t_rotation rotation);
-
-/*minimap*/
-void	draw_minimap();
-char	*ft_dtoa(double n, int decimal_n);
-
+int		file_check(char *file, char *ext, int fd);
+void	error_exit(char *error, char *file);
+int		check_xpm(void);
+int		check_order(void);
+int		check_colors(void);
+int		get_trgb(int t, int r, int g, int b);
+void	free_matrix(char **matrix);
+long	get_time(void);
+int		move_player(void);
 void	show_fps(long int old_time);
-void	exit_free();
 
 #endif

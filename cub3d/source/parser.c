@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/21 19:51:03 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 14:46:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int file_check(char *file, char *ext, int fd)
+int	file_check(char *file, char *ext, int fd)
 {
 	size_t	i;
 	size_t	ext_len;
@@ -31,11 +31,11 @@ int file_check(char *file, char *ext, int fd)
 		i--;
 	}
 	i = file_len - ext_len;
-    if (strcmp(file + i, ext) != 0 || (i > 0 && file[i - 1] == '.') 
+	if (strcmp(file + i, ext) != 0 || (i > 0 && file[i - 1] == '.')
 		|| dot_count != 1 || file_len < ext_len)
-		return (map_error(file), EXIT_FAILURE);
+		return (error_exit(ERR_INVMAPF, file), EXIT_FAILURE);
 	if (fd < 0)
-		return (file_error(fd), EXIT_FAILURE);
+		return (error_exit(ERR_FILENTFD, NULL), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -48,7 +48,7 @@ static int	textures_validation(char *map)
 	order = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		return (error_exit("Invalid map file.\n", NULL), EXIT_FAILURE);
+		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -60,25 +60,27 @@ static int	textures_validation(char *map)
 		line = get_next_line(fd);
 	}
 	if (order != 0)
-		return (error_exit("Make sure textures and colors exist and are in the correct order.\nTextures order: SO->NO->WE->EA->F->C\n", NULL), EXIT_FAILURE);
+		return (error_exit(ERR_TXTCLRORD, NULL), EXIT_FAILURE);
 	if (check_xpm() || check_colors())
-		return (error_exit("Make sure textures files and colors exist in the provided file and are in the correct format(XPM for textures and RGB for colors).\n", NULL), EXIT_FAILURE);
+		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-void	check_file(char *file)
+static void	check_file(char *file)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_exit("Error: File not found :", file);
+		error_exit(ERR_FILENTFD, file);
 }
 
-void	check_elements()
+static void	check_elements(void)
 {
-	if (!game()->map->no || !game()->map->so || !game()->map->we || !game()->map->ea || !game()->map->c || !game()->map->f)
-		error_exit("Error: Missing textures.\n", NULL);
+	if (!game()->map->no || !game()->map->so
+		|| !game()->map->we || !game()->map->ea
+		|| !game()->map->c || !game()->map->f)
+		error_exit(ERR_MISSINGTXT, NULL);
 	check_file(game()->map->no);
 	check_file(game()->map->so);
 	check_file(game()->map->we);
@@ -87,10 +89,10 @@ void	check_elements()
 
 int	parse_data(char *argv)
 {
- 	if (textures_validation(argv))
-		return (error_exit("Invalid textures.\n", NULL), EXIT_FAILURE);
+	if (textures_validation(argv))
+		return (error_exit(ERR_TXTINV, NULL), EXIT_FAILURE);
 	if (valid_map(argv))
-		return (error_exit("Map validation error\n", NULL), EXIT_FAILURE);
+		return (error_exit(ERR_MAPVALID, NULL), EXIT_FAILURE);
 	check_elements();
 	return (EXIT_SUCCESS);
 }

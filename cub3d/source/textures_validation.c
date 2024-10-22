@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:13:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/21 19:14:30 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/22 14:41:48 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_textures(char **textures)
+static void	init_textures(char **textures)
 {
 	textures[0] = "SO";
 	textures[1] = "NO";
@@ -23,7 +23,7 @@ void	init_textures(char **textures)
 	textures[6] = NULL;
 }
 
-char	*ft_strstr(char *str, char *to_find)
+static char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
 	int	j;
@@ -42,7 +42,7 @@ char	*ft_strstr(char *str, char *to_find)
 	return (0);
 }
 
-char	*trim_map_texture(char *line, char **textures)
+static char	*trim_map_texture(char *line, char **textures)
 {
 	int		i;
 	char	*new;
@@ -63,7 +63,7 @@ char	*trim_map_texture(char *line, char **textures)
 	return (ft_strdup(line));
 }
 
-void	clean_assign(char *str, char **texture)
+static void	clean_assign(char *str, char **texture)
 {
 	int	i;
 	int	j;
@@ -88,7 +88,6 @@ void	parse_map_textures(char *line)
 
 	init_textures(textures);
 	trim = trim_map_texture(line, textures);
-	printf("\nTEXTURE AT : %s\n", trim);
 	if (trim[0] == 'S' && trim[1] == 'O')
 		clean_assign(&trim[2], &game()->map->so);
 	else if (trim[0] == 'N' && trim[1] == 'O')

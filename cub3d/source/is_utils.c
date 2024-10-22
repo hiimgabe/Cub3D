@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   is_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 10:00:33 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 13:21:13 by gabe             ###   ########.fr       */
+/*   Created: 2024/10/22 12:28:34 by gabe              #+#    #+#             */
+/*   Updated: 2024/10/22 13:47:22 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	valid_map(char *file)
+bool	is_floor(char c)
 {
-	game()->map->layout = get_map(file);
-	if (!game()->map->layout)
-		return (error_exit(ERR_INVMAPF, NULL), 1);
-	if (map_conditions(game()->map->layout))
-		return (error_exit(ERR_MAPLAYOUT, NULL), 1);
-	return (0);
+	return (c == '0');
+}
+
+bool	is_wall(char c)
+{
+	return (c == '1');
+}
+
+int	is_space(char c)
+{
+	return (c == 32 || (c >= 9 && c <= 13));
 }
