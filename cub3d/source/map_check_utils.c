@@ -6,13 +6,13 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/23 21:29:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 21:48:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static int	map_lines(char *file)
+static int	file_lines(char *file)
 {
 	int		fd;
 	int		lines;
@@ -83,7 +83,7 @@ char	**get_map(char *file)
 	int		fd;
 	char	**map;
 
-	lines = map_lines(file);
+	lines = file_lines(file);
 	if (lines <= 0)
 		return (NULL);
 	map = ft_calloc(lines + 1, sizeof(char *));
