@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 16:45:50 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 09:50:25 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,8 +231,6 @@ int		check_colors(void);
 int		get_trgb(int t, int r, int g, int b);
 long	get_time(void);
 int		move_player(void);
-
-
-void	print_map(t_pos err_pos);
+int		quit_window(void);
 
 #endif

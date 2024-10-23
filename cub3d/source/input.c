@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:42:21 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 12:38:13 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 09:49:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,11 @@ int	input_release(int key)
 	if (key == 65361)
 		game()->player.rotate = 0;
 	game()->player.moving = 0;
+	return (0);
+}
+
+int	quit_window(void)
+{
+	exit_free();
 	return (0);
 }
