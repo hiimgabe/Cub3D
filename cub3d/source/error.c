@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 13:08:54 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 11:56:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	error_exit(char *error, char *file)
 	ft_putstr_fd(error, 2);
 	if (file)
 	{
-		ft_putstr_fd(" ", 2);
+		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd("\n", 2);
 	}

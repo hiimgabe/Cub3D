@@ -1,7 +1,7 @@
-SO ./assets/textures/wood.xpm
-NO ./assets/textures/wood.xpm
-WE ./assets/textures/wood.xpm
-EA ./assets/textures/wood.xpm
+SO ./assets/textures/bookshelf.xpm
+NO ./assets/textures/bookshelf.xpm
+WE ./assets/textures/bookshelf.xpm
+EA ./assets/textures/bookshelf.xpm
 
 F 220,100,0
 C 225,30,0
