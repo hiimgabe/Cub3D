@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 11:51:23 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 21:43:54 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	map_conditions(char **layout)
 	{
 		if (!invalid_characters(layout[x]))
 			return (error_exit(ERR_MAPELE, NULL), 1);
-		if (!invalid_borders(layout[x]))
-			return (error_exit(ERR_MAPBORD, NULL), 1);
+		//if (!invalid_borders(layout[x]))
+		//	return (error_exit(ERR_MAPBORD, NULL), 1);
 		x++;
 	}
 	x--;

@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/23 11:46:16 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 21:29:37 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static char	**save_map(char **map, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	print_map(map);
 	free(line);
 	return (map);
 }

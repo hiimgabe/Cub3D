@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 11:56:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 21:25:24 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,5 +235,6 @@ int		move_player(void);
 int		quit_window(void);
 int		mouse_handler(int x, int y);
 void	print_map(char **map);
+bool	only_walls(char *line);
 
 #endif
