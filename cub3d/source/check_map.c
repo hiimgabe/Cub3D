@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/23 10:16:53 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 11:44:45 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,21 @@ static bool	is_surrounded(char **map, size_t i)
 	return (check_surround(top, curr, down, i));
 }
 
+void	print_map(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			printf("%c", map[i][j]);
+		printf("\n");
+	}
+}
+
 void	check_map(char **map)
 {
 	size_t	i;
@@ -87,4 +102,5 @@ void	check_map(char **map)
 		if (!is_surrounded(map, i))
 			error_exit(ERR_MAPSURR, NULL);
 	}
+	print_map(map);
 }

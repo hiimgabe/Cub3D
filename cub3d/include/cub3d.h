@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 11:20:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 11:56:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@
 # define ERR_PNOTFND		"Error: Invalid Player.\n"
 # define ERR_MAPWALLE	"Error: Empty line inside map.\n"
 # define ERR_MAPSURR	"Error: Map isn't surrounded by walls.\n"
+# define ERR_INVEXT		"Error: Invalid Extention"
 
 typedef enum e_diagonal
 {
@@ -233,5 +234,6 @@ long	get_time(void);
 int		move_player(void);
 int		quit_window(void);
 int		mouse_handler(int x, int y);
+void	print_map(char **map);
 
 #endif
