@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:01:07 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/23 10:06:48 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 10:17:33 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	wrap_mouse(int x, int y)
 	if (x > SCREEN_W - MOUSEWRAP)
 	{
 		x = SCREEN_W - MOUSEWRAP;
-		mlx_mouse_move(game()->mlx, game()->mlx_win, x ,y);
+		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
 	}
 	else if (x < MOUSEWRAP)
 	{
 		x = MOUSEWRAP;
-		mlx_mouse_move(game()->mlx, game()->mlx_win, x ,y);
+		mlx_mouse_move(game()->mlx, game()->mlx_win, x, y);
 	}
 }
 

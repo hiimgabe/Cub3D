@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 10:09:14 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 11:20:07 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define RENDER_DIST		20
 # define SCREEN_W		800
 # define SCREEN_H		800
-# define MOVEMENTSPEED	0.400
-# define ROTSPEED		0.030
+# define MOVEMENTSPEED	0.250
+# define ROTSPEED		0.025
 # define MOUSEWRAP		15
 # define MINIMAP_W		0x202060
 # define MINIMAP_F		0x5BC8AF

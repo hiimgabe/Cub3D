@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 19:57:37 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 10:16:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ static bool	check_surround(char *top, char *curr, char *down, int i)
 	{
 		if (curr[0] != '1' && (curr[ft_strlen(curr) - 1] != '1'))
 			return (false);
-		if (top && ft_strlen(curr) > ft_strlen(top) && j > ft_strlen(top) - 1 && curr[j] != '1')
+		if (top && ft_strlen(curr) > ft_strlen(top)
+			&& j > ft_strlen(top) - 1 && curr[j] != '1')
 			return (false);
-		if (down && ft_strlen(curr) > ft_strlen(down) && j > ft_strlen(down) - 1 && curr[j] != '1')
+		if (down && ft_strlen(curr) > ft_strlen(down)
+			&& j > ft_strlen(down) - 1 && curr[j] != '1')
 			return (false);
 	}
 	return (true);
@@ -57,7 +59,7 @@ static bool	is_surrounded(char **map, size_t i)
 	char	*top;
 	char	*curr;
 	char	*down;
-	
+
 	top = NULL;
 	curr = map[i];
 	down = NULL;
@@ -77,7 +79,8 @@ void	check_map(char **map)
 		error_exit(ERR_INVMAPF, NULL);
 	while (map[++i])
 	{
-		if (!only_walls(map[i]) && (i == 0 || (int)i == game()->map->map_height))
+		if (!only_walls(map[i])
+			&& (i == 0 || (int)i == game()->map->map_height))
 			error_exit(ERR_MAPWALLS, NULL);
 		if (map[i][0] == '\0')
 			error_exit(ERR_MAPWALLE, NULL);
