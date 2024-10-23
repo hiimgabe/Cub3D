@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 09:50:25 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 10:09:14 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-/*MACROS*/
 # define MAP_POS			50
 # define TILE_SIZE		10
 # define RENDER_DIST		20
@@ -45,6 +44,7 @@
 # define SCREEN_H		800
 # define MOVEMENTSPEED	0.400
 # define ROTSPEED		0.030
+# define MOUSEWRAP		15
 # define MINIMAP_W		0x202060
 # define MINIMAP_F		0x5BC8AF
 # define MINIMAP_P		0xFF00FF
@@ -232,5 +232,6 @@ int		get_trgb(int t, int r, int g, int b);
 long	get_time(void);
 int		move_player(void);
 int		quit_window(void);
+int		mouse_handler(int x, int y);
 
 #endif
