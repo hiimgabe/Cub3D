@@ -6,11 +6,26 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:42:03 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 19:52:11 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 12:06:32 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	print_map(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			printf("%c", map[i][j]);
+		printf("\n");
+	}
+}
 
 void	draw_minimap(void)
 {

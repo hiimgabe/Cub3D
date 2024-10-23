@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 11:58:17 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/23 12:05:51 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static int	textures_validation(char *map)
 {
 	int		fd;
 	char	*line;
-	//int		order;
 
-	//order = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
@@ -28,12 +26,8 @@ static int	textures_validation(char *map)
 		parse_map_textures(line);
 		if (line)
 			free(line);
-		//if (check_order())
-		//	order++;
 		line = get_next_line(fd);
 	}
-	//if (order != 0)
-	//	return (error_exit(ERR_TXTCLRORD, NULL), EXIT_FAILURE);
 	if (check_xpm() || check_colors())
 		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -88,3 +82,11 @@ int	parse_data(char *argv)
 	check_map(game()->map->layout);
 	return (EXIT_SUCCESS);
 }
+/*
+//int		order;
+//order = 0;
+//if (check_order())
+//	order++;
+//if (order != 0)
+//	return (error_exit(ERR_TXTCLRORD, NULL), EXIT_FAILURE);
+*/
