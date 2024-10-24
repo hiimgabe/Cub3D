@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 16:02:16 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:29:43 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 	if (parse_data(argv[1]))
 		free_game();
 	print_instructions();
-	printf("%s\n", game()->map->c);
 	start_game();
 	free_game();
 	return (EXIT_SUCCESS);

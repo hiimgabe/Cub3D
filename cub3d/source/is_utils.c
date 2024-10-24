@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:28:34 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/24 16:24:39 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:12:19 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ bool	isdigitarray(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		printf("%c\n", str[i]);
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && !is_space(str[i]))
 		{
 			return (false);
 		}
