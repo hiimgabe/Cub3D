@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/22 19:53:59 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 15:30:40 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,13 @@ static void	print_instructions(void)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-
-	fd = 0;
-	if (argc != 2)
+	if (argc != 2 || argv[1][0] == '\0')
 	{
-		ft_putstr_fd(ERR_NOMAP, 2);
-		return (1);
+		ft_strlen(argv[1]);
+		error_exit(ERR_NOMAP, NULL);
 	}
-	if (file_check(argv[1], ".cub", fd))
-	{
-		close(fd);
+	if (file_check(argv[1]))
 		exit_free();
-	}
 	init_game();
 	if (parse_data(argv[1]))
 		free_game();

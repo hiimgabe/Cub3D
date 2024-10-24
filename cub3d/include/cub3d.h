@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 21:25:24 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 15:26:31 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ int		shader_floor(int dist, int color);
 int		shader_ceiling(int dist, int color);
 void	parse_map_textures(char *line);
 int		shader(double wall_dist, int color);
-int		file_check(char *file, char *ext, int fd);
+int		file_check(char *file);
 void	error_exit(char *error, char *file);
 int		check_xpm(void);
 int		check_order(void);

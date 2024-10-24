@@ -3,38 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:19:16 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/23 11:55:11 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 15:39:54 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	file_check(char *file, char *ext, int fd)
+int	file_check(char *file)
 {
 	size_t	i;
-	size_t	ext_len;
-	size_t	file_len;
-	size_t	dot_count;
+	int		fd;
 
-	dot_count = 0;
-	ext_len = ft_strlen(ext);
-	file_len = ft_strlen(file);
-	i = file_len - ext_len;
+	i = 0;
 	fd = open(file, O_RDONLY);
-	while (i > 0)
-	{
-		if (file[i] == '.')
-			dot_count++;
-		i--;
-	}
-	i = file_len - ext_len;
-	if (strcmp(file + i, ext) != 0 || (i > 0 && file[i - 1] == '.')
-		|| dot_count != 1 || file_len < ext_len)
-		return (error_exit(ERR_INVEXT, file), EXIT_FAILURE);
 	if (fd < 0)
+	{
+		close(fd);
 		return (error_exit(ERR_FILENTFD, NULL), EXIT_FAILURE);
+	}
+	while (i < ft_strlen(file) - 4)
+		i++;
+	if (ft_strncmp(&file[i], ".cub", 4))
+	{
+		close(fd);
+		return (error_exit(ERR_INVEXT, file), EXIT_FAILURE);
+	}
+	close(fd);
 	return (EXIT_SUCCESS);
 }

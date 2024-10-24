@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 21:33:57 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 15:39:58 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	textures_validation(char *map)
 	if (fd < 0)
 		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	line = get_next_line(fd);
+	if (!line)
+		error_exit(ERR_EMPTYMAP, NULL);
 	while (line)
 	{
 		parse_map_textures(line);
@@ -30,6 +32,7 @@ static int	textures_validation(char *map)
 	}
 	if (check_xpm() || check_colors())
 		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
+	close(fd);
 	return (EXIT_SUCCESS);
 }
 
@@ -39,7 +42,11 @@ static void	check_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		close(fd);
 		error_exit(ERR_FILENTFD, file);
+	}
+	close(fd);
 }
 
 static void	check_elements(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conditions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 21:43:54 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 09:55:17 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	map_conditions(char **layout)
 	{
 		if (!invalid_characters(layout[x]))
 			return (error_exit(ERR_MAPELE, NULL), 1);
-		//if (!invalid_borders(layout[x]))
-		//	return (error_exit(ERR_MAPBORD, NULL), 1);
 		x++;
 	}
 	x--;

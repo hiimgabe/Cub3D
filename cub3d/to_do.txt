@@ -1,5 +1,0 @@
-
-
-finish raycasting
-	fps counter
-	handle movements

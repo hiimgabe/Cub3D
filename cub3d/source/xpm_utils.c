@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xpm_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:29:30 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 12:30:09 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 15:19:29 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	is_valid_xpm_file(char *xpm)
 
 int	check_xpm(void)
 {
+	if (!game()->map->no || !game()->map->so || !game()->map->we || !game()->map->ea)
+		return (EXIT_FAILURE);
 	if (is_valid_xpm_file(game()->map->so)
 		|| is_valid_xpm_file(game()->map->no)
 		|| is_valid_xpm_file(game()->map->we)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
+#    By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/03 10:05:53 by pmagalha          #+#    #+#              #
-#    Updated: 2024/10/17 00:03:45 by gabe             ###   ########.fr        #
+#    Updated: 2024/10/24 15:24:48 by gamoreir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 ################################################################################
 
 
-NAME = cub3d
+NAME = cub3D
 LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_DIR = ./include/libft/
 MLX_DIR = ./include/minilibx-linux/
