@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:28:34 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 13:47:22 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 16:24:39 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,20 @@ bool	is_wall(char c)
 int	is_space(char c)
 {
 	return (c == 32 || (c >= 9 && c <= 13));
+}
+
+bool	isdigitarray(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		printf("%c\n", str[i]);
+		if (!ft_isdigit(str[i]))
+		{
+			return (false);
+		}
+	}
+	return (true);
 }

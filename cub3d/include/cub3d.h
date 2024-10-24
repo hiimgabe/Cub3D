@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 15:26:31 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:11:01 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@
 # define PURPLE	"\033[38;5;93m"
 # define CYAN	"\033[1;36m"
 # define WHITE	"\033[37m"
-# define ERR_TXTCLRORD	"Error: Texture order: SO->NO->WE->EA->F->C\n"
-# define ERR_TXTCLRFMT	"Error: Colors(r,g,b), files(xpm).\n"
+# define ERR_TXTCLRFMT	"Error: Make sure to use rgb colors and xpm textures.\n"
 # define ERR_TXTINV		"Error: Invalid textures.\n"
 # define ERR_MISSINGTXT	"Error: Missing textures.\n"
 # define ERR_INVMAPF		"Error: Invalid map file.\n"
@@ -236,5 +235,6 @@ int		quit_window(void);
 int		mouse_handler(int x, int y);
 void	print_map(char **map);
 bool	only_walls(char *line);
+bool	isdigitarray(char *str);
 
 #endif

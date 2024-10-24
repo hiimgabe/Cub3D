@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 15:30:40 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:02:16 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	print_instructions(void)
 	printf(YELLOW"Forward\t\t: w\t\tBackward: s\n"RESET);
 	printf(GREEN"Left\t\t: a\t\tRight: d\n"RESET);
 	printf(BLUE"Look left\t: ←\t\tLook right: →\n"RESET);
-	printf(PURPLE"Show map\t: Spacebar\n" RESET);
+	printf(PURPLE"Show map\t:YELLOW Spacebar\n" RESET);
+	printf(RESET"\b");
 }
 
 int	main(int argc, char **argv)
@@ -49,6 +50,7 @@ int	main(int argc, char **argv)
 	if (parse_data(argv[1]))
 		free_game();
 	print_instructions();
+	printf("%s\n", game()->map->c);
 	start_game();
 	free_game();
 	return (EXIT_SUCCESS);

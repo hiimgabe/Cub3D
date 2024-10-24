@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/22 14:48:51 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/24 16:26:41 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	check_rgb(char **colors)
 {
 	int	color[3];
 
+	if (!isdigitarray(colors[0]) || !isdigitarray(colors[1]) || !isdigitarray(colors[2]))
+		error_exit(ERR_TXTCLRFMT, NULL);
 	color[0] = ft_atoi(colors[0]);
 	color[1] = ft_atoi(colors[1]);
 	color[2] = ft_atoi(colors[2]);
