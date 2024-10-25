@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 16:29:43 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:53:11 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// Added this so we can call game()->map for example
 
 t_game	*game(void)
 {
@@ -30,11 +28,11 @@ static void	print_instructions(void)
 	printf(BLUE"| |__ | |_| || _ \\ __| || |_| |\n"RESET);
 	printf(PURPLE"|____||_____||___/|____||____/\n"RESET);
 	printf(RED"Instructions\n"RESET);
-	printf(YELLOW"Forward\t\t: w\t\tBackward: s\n"RESET);
-	printf(GREEN"Left\t\t: a\t\tRight: d\n"RESET);
-	printf(BLUE"Look left\t: ←\t\tLook right: →\n"RESET);
-	printf(PURPLE"Show map\t:YELLOW Spacebar\n" RESET);
-	printf(RESET"\b");
+	printf(YELLOW"Forward\t\t: W\t\tBackward\t: S\n"RESET);
+	printf(GREEN"Left\t\t: A\t\tRight\t\t: D\n"RESET);
+	printf(BLUE"Look left\t: ←\t\tLook right\t: →\n"RESET);
+	printf(PURPLE"Show map\t: Spacebar\tShow FPS\t: F\n" RESET);
+	printf(RESET"\n");
 }
 
 int	main(int argc, char **argv)

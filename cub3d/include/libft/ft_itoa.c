@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmagalha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 10:15:26 by pmagalha          #+#    #+#             */
-/*   Updated: 2023/04/28 11:14:53 by pmagalha         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:54:59 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-/*
-int main()
-{
-    printf("Input: %d\nResult: %s\n\n", 0, ft_itoa(0));
-    printf("Input: %d\nResult: %s\n\n", 9, ft_itoa(9));
-    printf("Input: %d\nResult: %s\n\n", -9, ft_itoa(-9));
-    printf("Input: %d\nResult: %s\n\n", 10, ft_itoa(10));
-    printf("Input: %d\nResult: %s\n\n", 8124, ft_itoa(8124));
-    printf("Input: %d\nResult: %s\n\n", -9874, ft_itoa(-9874));
-    printf("Input: %d\nResult: %s\n\n", 543000, ft_itoa(543000));
-    printf("Input: %lld\nResult: %s\n\n", -2147483648LL, ft_itoa(-2147483648LL));
-    printf("Input: %d\nResult: %s\n\n", 2147483647, ft_itoa(2147483647));
-}*/
