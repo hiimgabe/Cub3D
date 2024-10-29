@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conditions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 09:55:17 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:30:00 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@ int	map_conditions(char **layout)
 {
 	int	x;
 
-	x = 0;
+	x = -1;
 	if (!game()->map->layout)
 		return (0);
-	if (!top_bottom_walls(layout[x]))
+	if (!top_bottom_walls(layout[0], 0))
 		return (error_exit(ERR_MAPWALLS, NULL), 1);
 	if (!invalid_walls(layout))
 		return (error_exit(ERR_MAPWALLS, NULL), 1);
-	while (layout[x])
+	while (layout[++x])
 	{
 		if (!invalid_characters(layout[x]))
 			return (error_exit(ERR_MAPELE, NULL), 1);
-		x++;
 	}
-	x--;
 	if (player_check(layout))
 		return (error_exit(ERR_PNOTFND, NULL), 1);
-	if (!top_bottom_walls(layout[x]))
+	if (!top_bottom_walls(layout[x - 2], x - 1))
 		return (error_exit(ERR_MAPWALLS, NULL), 1);
 	return (0);
 }

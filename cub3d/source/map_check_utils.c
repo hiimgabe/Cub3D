@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/24 15:36:44 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:36:52 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ static bool	map_start(char *line)
 	return (false);
 }
 
+bool	is_lastwall(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if(line[i] == '1' || line[i] == '0' || line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+			return (false);
+	}
+	return (true);
+}
+
 static char	**save_map(char **map, int fd)
 {
 	int		i;
@@ -76,9 +89,12 @@ static char	**save_map(char **map, int fd)
 			start = true;
 		if (start && line[0] != '\0')
 			map[i++] = copy_map_line(line, ft_strlen(line));
+		if (start && is_lastwall(line))
+			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
+	if ()// is only spaces map height = i - 1 else map height = i
 	free(line);
 	return (map);
 }

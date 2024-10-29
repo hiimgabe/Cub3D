@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 16:19:59 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:01:35 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	parse_data(char *argv)
 		return (error_exit(ERR_MAPVALID, NULL), EXIT_FAILURE);
 	check_elements();
 	replace_mapspace();
+	print_map(game()->map->layout);
 	check_map(game()->map->layout);
 	return (EXIT_SUCCESS);
 }

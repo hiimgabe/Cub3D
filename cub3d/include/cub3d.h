@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/24 16:11:01 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:21:49 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ int		parse_data(char *argv);
 char	**get_map(char *file);
 int		valid_map(char *file);
 int		invalid_characters(char *line);
-int		top_bottom_walls(char *line);
+int		top_bottom_walls(char *line, int line_nb);
 int		invalid_walls(char **layout);
 int		invalid_borders(char *line);
 int		player_check(char **map);

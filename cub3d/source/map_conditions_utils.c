@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conditions_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/24 09:55:37 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/29 19:29:36 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,19 @@ int	invalid_characters(char *line)
 	return (1);
 }
 
-int	top_bottom_walls(char *line)
+int	top_bottom_walls(char *line, int line_nb)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
+	(void)line_nb;
+	printf("_%d %s\n", line_nb, line);
 	if (!line)
 		return (error_exit(ERR_EMPTYMAP, NULL), 0);
-	while (line[i] && line[i] != '\n')
+	while (line[++i])
 	{
-		if (line[i] != '1' && line[i] != ' ')
+		if (line[i] != '1' && line[i] != ' '/*&& invalid_space()*/)
 			return (0);
-		i++;
 	}
 	return (1);
 }
