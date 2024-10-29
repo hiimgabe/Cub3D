@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 10:22:08 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/23 09:49:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/29 15:44:55 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ static void	free_mlx(void)
 	if (game()->mlx_win)
 		mlx_destroy_window(game()->mlx, game()->mlx_win);
 	if (game()->mlx)
+	{
+		mlx_destroy_display(game()->mlx);
 		free(game()->mlx);
+	}
 }
 
 static void	free_textures(void)
