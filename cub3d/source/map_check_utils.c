@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 14:13:23 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:21:55 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ static char	**save_map(char **map, int fd)
 			start = true;
 		if (start && line[0] != '\0')
 			map[++i] = copy_map_line(line, ft_strlen(line));
-		if (start && is_lastwall(line))
-			break ;
+		//if (start && is_lastwall(line))
+		//	break ;
 		free(line);
 		line = get_next_line(fd);
 	}

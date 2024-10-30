@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 18:18:15 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:33:53 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	invalid_characters(char *line)
 
 bool	invalid_space(int curr, int line_nb)
 {
-	//print_map(game()->map->layout);
 	char	**map;
 	int		i;
 
@@ -43,6 +42,8 @@ bool	invalid_space(int curr, int line_nb)
 		while (map[++i])
 		{
 			if (map[i][curr] == '1')
+				return (false);
+			else if (map[i][curr] != '1' && !is_space(map[i][curr]))
 				return (true);
 		}
 	}
@@ -53,10 +54,10 @@ bool	invalid_space(int curr, int line_nb)
 		{
 			if (map[i][curr] == '1')
 				return (false);
+			else if (map[i][curr] != '1' && !is_space(map[i][curr]))
+				return (true);
 		}
-		printf("_%c_\n", map[i][curr]);
 	}
-	printf("=%c=", map[i][curr]);
 	return (true);
 }
 
@@ -67,14 +68,14 @@ int	top_bottom_walls(char *line, int line_nb)
 
 	i = -1;
 	(void)line_nb;
-	printf("_%d %s\n", line_nb, line);
 	if (!line)
 		return (error_exit(ERR_EMPTYMAP, NULL), 0);
 	while (line[++i])
 	{
-		printf("_%c_\n", line[i]);
 		if (line[i] != '1' && invalid_space(i, line_nb))
+		{
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -97,25 +98,6 @@ int	invalid_walls(char **layout)
 	if (i == 0 || layout[i + 1] == NULL)
 		if (layout[i][j] != '1' && layout[i][j] != ' ')
 			return (0);
-	return (1);
-}
-
-int	invalid_borders(char *line)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!line)
-		return (0);
-	while (line[i] == ' ')
-		i++;
-	j = ft_strlen(line) - 1;
-	while (line[j] == ' ')
-		j--;
-	if (line[j] != '1')
-		return (error_exit(ERR_MAPBORD, NULL), 0);
 	return (1);
 }
 

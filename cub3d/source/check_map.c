@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 18:13:46 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:34:16 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static bool	is_surrounded(char **map, size_t i)
 		top = map[i - 1];
 	if (i < matrix_len(map))
 		down = map[i + 1];
-	if (top && down)
-		printf("\n\n%s\n%s\n%s\n\n", top, curr, down);
 	return (check_surround(top, curr, down, i));
 }
 
@@ -85,7 +83,7 @@ void	check_map(char **map)
 	{
 		if (!only_walls(map[i])
 			&& (i == 0 || (int)i == game()->map->map_height))
-			error_exit(ERR_MAPWALLS, NULL);
+			error_exit("ERR_MAPWALLS", NULL);
 		if (map[i][0] == '\0')
 			error_exit(ERR_MAPWALLE, NULL);
 		if (!is_surrounded(map, i))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-ppe <joao-ppe@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:23:25 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/02/14 16:19:21 by joao-ppe         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:40:15 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-/*Funcoes para o GNL*/
-int					slen(char *str);
-char				*gnl_strjoin(char *stash, char *buffer);
-char				*gnl_strchr(char *s, int c);
-char				*clean(char *stash);
-char				*get_next_line(int fd);
-char				*ft_readf(int fd, char *stash);
-char				*ft_getline(char *stash);
+char	*get_next_line(int fd);
 
 /*Funcoes para o printf*/
 int					ft_printf(const char *format, ...);

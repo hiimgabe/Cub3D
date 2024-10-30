@@ -6,7 +6,7 @@
 #    By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:32:44 by pmagalha          #+#    #+#              #
-#    Updated: 2024/09/17 13:07:07 by gabe             ###   ########.fr        #
+#    Updated: 2024/10/30 20:39:46 by gabe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ MDT =	ft_atoi.c \
 	ft_lstiter.c \
 	ft_lstmap.c \
 	get_next_line.c \
-	get_next_line_utils.c \
 
 CC = cc
 
