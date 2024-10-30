@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/29 19:29:36 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 14:20:43 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,18 @@ int	invalid_characters(char *line)
 	return (1);
 }
 
+bool	invalid_space(int curr)
+{
+	write(1, "INVALID\n", 9);
+	printf("%d\n", curr);
+	print_map(game()->map->layout);
+	return (false);
+}
+
 int	top_bottom_walls(char *line, int line_nb)
 {
 	int	i;
+
 
 	i = -1;
 	(void)line_nb;
@@ -41,7 +50,7 @@ int	top_bottom_walls(char *line, int line_nb)
 		return (error_exit(ERR_EMPTYMAP, NULL), 0);
 	while (line[++i])
 	{
-		if (line[i] != '1' && line[i] != ' '/*&& invalid_space()*/)
+		if (line[i] != '1' && invalid_space(i))
 			return (0);
 	}
 	return (1);

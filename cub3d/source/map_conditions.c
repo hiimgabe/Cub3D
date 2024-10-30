@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/29 19:30:00 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 14:09:22 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	map_conditions(char **layout)
 	}
 	if (player_check(layout))
 		return (error_exit(ERR_PNOTFND, NULL), 1);
-	if (!top_bottom_walls(layout[x - 2], x - 1))
+	if (!top_bottom_walls(layout[x - 1], x - 1))
 		return (error_exit(ERR_MAPWALLS, NULL), 1);
 	return (0);
 }

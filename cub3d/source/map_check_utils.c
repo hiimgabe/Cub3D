@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/29 19:36:52 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 14:13:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,19 @@ bool	is_lastwall(char *line)
 	return (true);
 }
 
+bool	is_onlyspaces(char *line)
+{
+	int	i;
+
+	i = -1;
+	if (!line)
+		return (false);
+	while (line[++i])
+		if (!is_space(line[i]))
+			return (false);
+	return (true);
+}
+
 static char	**save_map(char **map, int fd)
 {
 	int		i;
@@ -82,19 +95,22 @@ static char	**save_map(char **map, int fd)
 
 	start = false;
 	line = get_next_line(fd);
-	i = 0;
+	i = -1;
 	while (line)
 	{
 		if (!start && map_start(line))
 			start = true;
 		if (start && line[0] != '\0')
-			map[i++] = copy_map_line(line, ft_strlen(line));
+			map[++i] = copy_map_line(line, ft_strlen(line));
 		if (start && is_lastwall(line))
 			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
-	if ()// is only spaces map height = i - 1 else map height = i
+	if (is_onlyspaces(line))
+		game()->map->map_height = i - 1;
+	else
+		game()->map->map_height = i;
 	free(line);
 	return (map);
 }
