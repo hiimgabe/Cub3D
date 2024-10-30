@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 14:20:43 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:18:15 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,34 @@ int	invalid_characters(char *line)
 	return (1);
 }
 
-bool	invalid_space(int curr)
+bool	invalid_space(int curr, int line_nb)
 {
-	write(1, "INVALID\n", 9);
-	printf("%d\n", curr);
-	print_map(game()->map->layout);
-	return (false);
+	//print_map(game()->map->layout);
+	char	**map;
+	int		i;
+
+	map = game()->map->layout;
+	if (line_nb == 0)
+	{
+		i = -1;
+		while (map[++i])
+		{
+			if (map[i][curr] == '1')
+				return (true);
+		}
+	}
+	else
+	{
+		i = line_nb + 1;
+		while (map[--i])
+		{
+			if (map[i][curr] == '1')
+				return (false);
+		}
+		printf("_%c_\n", map[i][curr]);
+	}
+	printf("=%c=", map[i][curr]);
+	return (true);
 }
 
 int	top_bottom_walls(char *line, int line_nb)
@@ -50,7 +72,8 @@ int	top_bottom_walls(char *line, int line_nb)
 		return (error_exit(ERR_EMPTYMAP, NULL), 0);
 	while (line[++i])
 	{
-		if (line[i] != '1' && invalid_space(i))
+		printf("_%c_\n", line[i]);
+		if (line[i] != '1' && invalid_space(i, line_nb))
 			return (0);
 	}
 	return (1);

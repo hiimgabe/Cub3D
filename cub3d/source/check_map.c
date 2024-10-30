@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 15:54:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:13:46 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,6 @@ static bool	is_surrounded(char **map, size_t i)
 	return (check_surround(top, curr, down, i));
 }
 
-bool	zeros_test()
-{
-	int		i;
-	int		j;
-	char	**map;
-
-	map = game()->map->layout;
-	i = 0;
-	while ()
-	{
-	}
-	return (true);
-}
-
 void	check_map(char **map)
 {
 	size_t	i;
@@ -107,6 +93,4 @@ void	check_map(char **map)
 		if (only_walls(map[i]))
 			cnt++;
 	}
-	if (!zeros_test())
-		error_exit(ERR_INVMAPF, NULL);
 }

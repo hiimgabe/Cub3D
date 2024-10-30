@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:42:03 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/29 19:23:32 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 18:11:36 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_map(char **map)
 
 	i = -1;
 	while (map[++i])
-		printf("-%d %s\n", i, map[i]);
+		printf("-%d\t%s\n", i, map[i]);
 }
 
 void	draw_minimap(void)
