@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 21:33:53 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 21:48:09 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,31 +73,8 @@ int	top_bottom_walls(char *line, int line_nb)
 	while (line[++i])
 	{
 		if (line[i] != '1' && invalid_space(i, line_nb))
-		{
 			return (0);
-		}
 	}
-	return (1);
-}
-
-int	invalid_walls(char **layout)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if (!game()->map->layout)
-		return (0);
-	if (i > 1 && ft_strlen(layout[i]) > ft_strlen(layout[i - 1])
-		&& j >= ft_strlen(layout[i - 1]) && layout[i][j] && layout[i][j] != '1')
-		return (0);
-	if (layout[i + 1] != NULL && ft_strlen(layout[i]) > ft_strlen(layout[i + 1])
-		&& j >= ft_strlen(layout[i + 1]) && layout[i][j] && layout[i][j] != '1')
-		return (0);
-	if (i == 0 || layout[i + 1] == NULL)
-		if (layout[i][j] != '1' && layout[i][j] != ' ')
-			return (0);
 	return (1);
 }
 

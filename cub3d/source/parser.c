@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/30 20:24:34 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/30 22:01:21 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static int	textures_validation(char *map)
 		line = get_next_line(fd);
 	}
 	if (check_xpm() || check_colors())
+	{
+		close(fd);
 		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
+	}
 	close(fd);
 	return (EXIT_SUCCESS);
 }
