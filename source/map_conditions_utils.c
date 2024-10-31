@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conditions_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 21:48:09 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/31 16:20:54 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,52 @@ int	invalid_characters(char *line)
 	}
 	return (1);
 }
-
-bool	invalid_space(int curr, int line_nb)
+bool	top_wall(int curr)
 {
 	char	**map;
 	int		i;
 
 	map = game()->map->layout;
-	if (line_nb == 0)
+	i = -1;
+	while (map[++i])
 	{
-		i = -1;
-		while (map[++i])
-		{
-			if (map[i][curr] == '1')
-				return (false);
-			else if (map[i][curr] != '1' && !is_space(map[i][curr]))
-				return (true);
-		}
-	}
-	else
-	{
-		i = line_nb + 1;
-		while (map[--i])
-		{
-			if (map[i][curr] == '1')
-				return (false);
-			else if (map[i][curr] != '1' && !is_space(map[i][curr]))
-				return (true);
-		}
+		if (map[i][curr] == '1')
+			return (false);
+		else if (map[i][curr] != '1' && !is_space(map[i][curr]))
+			return (true);
 	}
 	return (true);
+}
+
+bool	bottom_wall(int curr, int line_nb)
+{
+	char	**map;
+	int		i;
+
+	map = game()->map->layout;
+	i = -1;
+	i = line_nb + 1;
+	while (map[--i])
+	{
+		if (map[i][curr] == '1')
+			return (false);
+		else if (map[i][curr] != '1' && !is_space(map[i][curr]))
+			return (true);
+	}
+	return (true);
+}
+
+bool	invalid_space(int curr, int line_nb)
+{
+	if (line_nb == 0)
+		return (top_wall(curr));
+	else
+		return (bottom_wall(curr, line_nb));
 }
 
 int	top_bottom_walls(char *line, int line_nb)
 {
 	int	i;
-
 
 	i = -1;
 	(void)line_nb;

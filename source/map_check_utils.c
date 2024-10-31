@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 21:21:55 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/31 17:27:56 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ bool	is_lastwall(char *line)
 	i = -1;
 	while (line[++i])
 	{
-		if(line[i] == '1' || line[i] == '0' || line[i] == 'N' || line[i] == 'S' || line[i] == 'W' || line[i] == 'E')
+		if (line[i] == '1' || line[i] == '0'
+			|| line[i] == 'N' || line[i] == 'S'
+			|| line[i] == 'W' || line[i] == 'E')
 			return (false);
 	}
 	return (true);
@@ -102,8 +104,6 @@ static char	**save_map(char **map, int fd)
 			start = true;
 		if (start && line[0] != '\0')
 			map[++i] = copy_map_line(line, ft_strlen(line));
-		//if (start && is_lastwall(line))
-		//	break ;
 		free(line);
 		line = get_next_line(fd);
 	}

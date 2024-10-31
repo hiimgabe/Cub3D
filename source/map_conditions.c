@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_conditions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:07:41 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/30 21:58:40 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/31 16:14:58 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static bool	check_wall(char *line)
 	int	i;
 
 	i = 0;
-
 	while (is_space(line[i]))
 		i++;
 	if (line[i] != '1' || line[ft_strlen(line) - 1] != '1')
