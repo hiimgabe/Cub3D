@@ -34,20 +34,34 @@ run_test() {
     return 0
 }
 
-if [ "$1" = "valid" ]; then
-    # Test valid maps
-    for map in $VALID_MAPS_DIR/*; do
-        run_test $map "no"
-    done
-elif [ "$1" = "invalid" ]; then
-    # Test invalid maps
-    for map in $INVALID_MAPS_DIR/*; do
-        run_test $map "yes"
-    done
+run_tests() {
+    local test_type=$1
+
+    if [ "$test_type" = "valid" ] || [ -z "$test_type" ]; then
+        echo "Running tests for valid maps..."
+        for map in $VALID_MAPS_DIR/*; do
+            run_test $map "no"
+        done
+    fi
+
+    if [ "$test_type" = "invalid" ] || [ -z "$test_type" ]; then
+        echo "Running tests for invalid maps..."
+        for map in $INVALID_MAPS_DIR/*; do
+            run_test $map "yes"
+        done
+    fi
+}
+
+if [ -z "$1" ]; then
+    run_tests
 else
-    echo "Usage: $0 <test-type>"
-    echo "test-type: valid or invalid"
-    exit 1
+    if [ "$1" = "valid" ] || [ "$1" = "invalid" ]; then
+        run_tests $1
+    else
+        echo "Usage: $0 [test-type]"
+        echo "test-type: valid or invalid"
+        exit 1
+    fi
 fi
 
 echo "All tests completed."

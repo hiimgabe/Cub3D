@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/29 19:21:49 by gabe             ###   ########.fr       */
+/*   Updated: 2024/10/31 17:42:33 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,14 @@ typedef struct s_game
 t_game	*game(void);
 t_pos	convert_to_screen(t_pos pos);
 t_pos	convert_to_map(t_pos screen_pos);
+bool	only_walls(char *line);
+bool	isdigitarray(char *str);
+bool	is_onlyspaces(char *line);
+bool	is_lastwall(char *line);
+bool	bottom_wall(int curr, int line_nb);
+bool	top_wall(int curr);
+bool	is_floor(char c);
+bool	is_wall(char c);
 void	init_mlx(void);
 void	init_game(void);
 void	load_textures(void);
@@ -200,15 +208,16 @@ void	raycast(void);
 void	render_pixel(t_pos pos, int color);
 void	free_matrix(char **matrix);
 void	show_fps(long int old_time);
+void	parse_map_textures(char *line);
+void	error_exit(char *error, char *file);
 void	check_map(char **map);
+void	print_map(char **map);
+char	*ft_dtoa(double n, int decimal_n);
+char	**get_map(char *file);
+long	get_time(void);
 int		handle_input(int key);
 int		input_release(int key);
-char	*ft_dtoa(double n, int decimal_n);
 int		is_space(char c);
-bool	is_floor(char c);
-bool	is_wall(char c);
-int		parse_data(char *argv);
-char	**get_map(char *file);
 int		valid_map(char *file);
 int		invalid_characters(char *line);
 int		top_bottom_walls(char *line, int line_nb);
@@ -220,21 +229,16 @@ int		check_move(t_pos move);
 int		render_game(void);
 int		rotate_camera(t_rotation rotation);
 int		shader_floor(int dist, int color);
-int		shader_ceiling(int dist, int color);
-void	parse_map_textures(char *line);
 int		shader(double wall_dist, int color);
-int		file_check(char *file);
-void	error_exit(char *error, char *file);
 int		check_xpm(void);
 int		check_order(void);
 int		check_colors(void);
-int		get_trgb(int t, int r, int g, int b);
-long	get_time(void);
 int		move_player(void);
 int		quit_window(void);
 int		mouse_handler(int x, int y);
-void	print_map(char **map);
-bool	only_walls(char *line);
-bool	isdigitarray(char *str);
+int		get_trgb(int t, int r, int g, int b);
+int		file_check(char *file);
+int		shader_ceiling(int dist, int color);
+int		parse_data(char *argv);
 
 #endif

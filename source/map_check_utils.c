@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:59:02 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/31 17:27:56 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:40:10 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,6 @@ static bool	map_start(char *line)
 	if (line[i] == '1')
 		return (true);
 	return (false);
-}
-
-bool	is_lastwall(char *line)
-{
-	int	i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] == '1' || line[i] == '0'
-			|| line[i] == 'N' || line[i] == 'S'
-			|| line[i] == 'W' || line[i] == 'E')
-			return (false);
-	}
-	return (true);
-}
-
-bool	is_onlyspaces(char *line)
-{
-	int	i;
-
-	i = -1;
-	if (!line)
-		return (false);
-	while (line[++i])
-		if (!is_space(line[i]))
-			return (false);
-	return (true);
 }
 
 static char	**save_map(char **map, int fd)

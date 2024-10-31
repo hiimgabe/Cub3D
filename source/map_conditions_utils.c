@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/31 16:20:54 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:40:31 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,6 @@ int	invalid_characters(char *line)
 		i++;
 	}
 	return (1);
-}
-bool	top_wall(int curr)
-{
-	char	**map;
-	int		i;
-
-	map = game()->map->layout;
-	i = -1;
-	while (map[++i])
-	{
-		if (map[i][curr] == '1')
-			return (false);
-		else if (map[i][curr] != '1' && !is_space(map[i][curr]))
-			return (true);
-	}
-	return (true);
-}
-
-bool	bottom_wall(int curr, int line_nb)
-{
-	char	**map;
-	int		i;
-
-	map = game()->map->layout;
-	i = -1;
-	i = line_nb + 1;
-	while (map[--i])
-	{
-		if (map[i][curr] == '1')
-			return (false);
-		else if (map[i][curr] != '1' && !is_space(map[i][curr]))
-			return (true);
-	}
-	return (true);
 }
 
 bool	invalid_space(int curr, int line_nb)
