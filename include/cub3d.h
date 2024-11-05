@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/11/05 14:51:49 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 16:13:51 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@
 # define ERR_MAPWALLE	"Error: Empty line inside map.\n"
 # define ERR_MAPSURR	"Error: Map isn't surrounded by walls.\n"
 # define ERR_INVEXT		"Error: Invalid Extention"
-# define ERR_INVRGB		"Error: Invalid rgb\n"
+# define ERR_INVRGB		"Error: Invalid rgb.\n"
+# define ERR_DUPTXT		"Error: Duplicate textures.\n"
 
 typedef enum e_diagonal
 {
@@ -101,6 +102,16 @@ typedef enum e_compass
 	WEST,
 	EAST
 }	t_compass;
+
+typedef enum e_texture
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	C,
+	F
+}	t_texture;
 
 typedef struct s_pos
 {
@@ -209,13 +220,13 @@ void	raycast(void);
 void	render_pixel(t_pos pos, int color);
 void	free_matrix(char **matrix);
 void	show_fps(long int old_time);
-void	parse_map_textures(char *line);
 void	error_exit(char *error, char *file);
 void	check_map(char **map);
 void	print_map(char **map);
 char	*ft_dtoa(double n, int decimal_n);
 char	**get_map(char *file);
 long	get_time(void);
+int		parse_map_textures(char *line);
 int		handle_input(int key);
 int		input_release(int key);
 int		is_space(char c);

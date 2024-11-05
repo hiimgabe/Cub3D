@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/11/05 14:39:08 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 16:14:40 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	textures_validation(char *map)
 		error_exit(ERR_EMPTYMAP, NULL);
 	while (line)
 	{
-		parse_map_textures(line);
+		if (parse_map_textures(line))
+			return (free(line), error_exit(ERR_DUPTXT, NULL),EXIT_FAILURE);
 		if (line)
 			free(line);
 		line = get_next_line(fd);

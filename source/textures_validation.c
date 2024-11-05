@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:13:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/11/05 14:36:43 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 16:15:23 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,32 @@ static void	clean_assign(char *str, char **texture)
 	*texture = ft_substr(str, i, j - i + 1);
 }
 
-void	parse_map_textures(char *line)
+bool	dup_text(char *trim)
+{
+	if (!ft_strncmp(trim, "NO", 2) && game()->map->no != 0)
+		return (true);
+	if (!ft_strncmp(trim, "SO", 2) && game()->map->so != 0)
+		return (true);
+	if (!ft_strncmp(trim, "EA", 2) && game()->map->ea != 0)
+		return (true);
+	if (!ft_strncmp(trim, "WE", 2) && game()->map->we != 0)
+		return (true);
+	if (!ft_strncmp(trim, "F", 1) && game()->map->f != 0)
+		return (true);
+	if (!ft_strncmp(trim, "C", 1) && game()->map->c != 0)
+		return (true);
+	return (false);
+}
+
+int	parse_map_textures(char *line)
 {
 	char	*textures[7];
 	char	*trim;
 
 	init_textures(textures);
 	trim = trim_map_texture(line, textures);
+	if (dup_text(trim))
+		return (free(trim), EXIT_FAILURE);
 	if (trim[0] == 'S' && trim[1] == 'O')
 		clean_assign(&trim[2], &game()->map->so);
 	else if (trim[0] == 'N' && trim[1] == 'O')
@@ -101,4 +120,5 @@ void	parse_map_textures(char *line)
 	else if (trim[0] == 'C' && trim[1] == ' ')
 		clean_assign(&trim[2], &game()->map->c);
 	free(trim);
+	return (EXIT_SUCCESS);
 }
