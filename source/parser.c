@@ -6,18 +6,27 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/30 22:01:21 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 19:23:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+static bool	is_valid_line(char *line)
+{
+	if (!is_space(line[0]) && line[0] != 'N' && line[0] != 'S' && line[0] != 'E' && line[0] != 'W' && line[0] != 'F' && line[0] != 'C' && line[0] != '1')
+		return (false);
+	return (true);
+}
+
 static int	textures_validation(char *map)
 {
 	int		fd;
+	int		exit_value;
 	char	*line;
 
 	fd = open(map, O_RDONLY);
+	exit_value = 0;
 	if (fd < 0)
 		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	line = get_next_line(fd);
@@ -25,18 +34,16 @@ static int	textures_validation(char *map)
 		error_exit(ERR_EMPTYMAP, NULL);
 	while (line)
 	{
-		parse_map_textures(line);
+		if (parse_map_textures(line) || !is_valid_line(line))
+			exit_value = 1;
 		if (line)
 			free(line);
 		line = get_next_line(fd);
 	}
-	if (check_xpm() || check_colors())
-	{
-		close(fd);
-		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
-	}
 	close(fd);
-	return (EXIT_SUCCESS);
+	if (check_xpm() || check_colors())
+		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
+	return (exit_value);
 }
 
 static void	check_file(char *file)
@@ -45,10 +52,7 @@ static void	check_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		close(fd);
 		error_exit(ERR_FILENTFD, file);
-	}
 	close(fd);
 }
 
@@ -92,11 +96,3 @@ int	parse_data(char *argv)
 	replace_mapspace();
 	return (EXIT_SUCCESS);
 }
-/*
-//int		order;
-//order = 0;
-//if (check_order())
-//	order++;
-//if (order != 0)
-//	return (error_exit(ERR_TXTCLRORD, NULL), EXIT_FAILURE);
-*/
