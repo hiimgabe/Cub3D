@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/30 22:01:21 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 14:39:08 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ static void	check_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		close(fd);
 		error_exit(ERR_FILENTFD, file);
-	}
 	close(fd);
 }
 
