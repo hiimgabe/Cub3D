@@ -6,7 +6,7 @@
 /*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/11/05 14:39:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/05 14:51:49 by gabe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@
 # define ERR_MAPWALLE	"Error: Empty line inside map.\n"
 # define ERR_MAPSURR	"Error: Map isn't surrounded by walls.\n"
 # define ERR_INVEXT		"Error: Invalid Extention"
+# define ERR_INVRGB		"Error: Invalid rgb\n"
 
 typedef enum e_diagonal
 {
