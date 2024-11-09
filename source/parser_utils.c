@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:19:16 by gabe              #+#    #+#             */
-/*   Updated: 2024/11/05 14:39:26 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 10:54:19 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+bool	is_valid_line(char *line)
+{
+	if (!is_space(line[0]) && line[0] != 'N'
+		&& line[0] != 'S' && line[0] != 'E'
+		&& line[0] != 'W' && line[0] != 'F'
+		&& line[0] != 'C' && line[0] != '1')
+		return (false);
+	return (true);
+}
+
+bool	dup_text(char *trim)
+{
+	if (!ft_strncmp(trim, "NO", 2) && game()->map->no != 0)
+		return (true);
+	if (!ft_strncmp(trim, "SO", 2) && game()->map->so != 0)
+		return (true);
+	if (!ft_strncmp(trim, "EA", 2) && game()->map->ea != 0)
+		return (true);
+	if (!ft_strncmp(trim, "WE", 2) && game()->map->we != 0)
+		return (true);
+	if (!ft_strncmp(trim, "F", 1) && game()->map->f != 0)
+		return (true);
+	if (!ft_strncmp(trim, "C", 1) && game()->map->c != 0)
+		return (true);
+	return (false);
+}
 
 int	file_check(char *file)
 {

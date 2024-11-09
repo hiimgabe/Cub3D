@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:16:57 by gabe              #+#    #+#             */
-/*   Updated: 2024/11/05 14:52:07 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 10:54:40 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ int	check_rgb(char **colors)
 	int	color[3];
 
 	if (!colors[0] || !colors[1] || !colors[2])
-		{
-			free_matrix(colors);
-			error_exit(ERR_INVRGB, NULL);
-		}
+	{
+		free_matrix(colors);
+		error_exit(ERR_INVRGB, NULL);
+	}
 	if (!isdigitarray(colors[0]) || !isdigitarray(colors[1])
 		|| !isdigitarray(colors[2]))
-		{
-			free_matrix(colors);
-			error_exit(ERR_INVRGB, NULL);
-		}
+	{
+		free_matrix(colors);
+		error_exit(ERR_INVRGB, NULL);
+	}
 	color[0] = ft_atoi(colors[0]);
 	color[1] = ft_atoi(colors[1]);
 	color[2] = ft_atoi(colors[2]);

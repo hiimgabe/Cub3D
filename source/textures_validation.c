@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 09:13:53 by gabe              #+#    #+#             */
-/*   Updated: 2024/11/05 17:30:52 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 10:54:13 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,6 @@ static void	clean_assign(char *str, char **texture)
 	if (str[j] == '\n')
 		j--;
 	*texture = ft_substr(str, i, j - i + 1);
-}
-
-bool	dup_text(char *trim)
-{
-	if (!ft_strncmp(trim, "NO", 2) && game()->map->no != 0)
-		return (true);
-	if (!ft_strncmp(trim, "SO", 2) && game()->map->so != 0)
-		return (true);
-	if (!ft_strncmp(trim, "EA", 2) && game()->map->ea != 0)
-		return (true);
-	if (!ft_strncmp(trim, "WE", 2) && game()->map->we != 0)
-		return (true);
-	if (!ft_strncmp(trim, "F", 1) && game()->map->f != 0)
-		return (true);
-	if (!ft_strncmp(trim, "C", 1) && game()->map->c != 0)
-		return (true);
-	return (false);
 }
 
 int	parse_map_textures(char *line)

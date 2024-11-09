@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:15:19 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/11/05 16:13:51 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 10:57:06 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,9 @@ bool	is_lastwall(char *line);
 bool	bottom_wall(int curr, int line_nb);
 bool	top_wall(int curr);
 bool	is_floor(char c);
+bool	is_valid_line(char *line);
 bool	is_wall(char c);
+bool	dup_text(char *trim);
 void	init_mlx(void);
 void	init_game(void);
 void	load_textures(void);

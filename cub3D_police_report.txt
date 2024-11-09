@@ -1,0 +1,29 @@
+==583225== Memcheck, a memory error detector
+==583225== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==583225== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==583225== Command: ./cub3D assets/maps/valid/validation.cub
+==583225== 
+Exiting game.
+[38;5;196m	           ____  ____
+[0m[38;5;196m ____  _   _  ___ |__  ||  _ \
+[0m[38;5;226m| ___|| | | || _ \ __| || | | |
+[0m[38;5;47m| |   | | | ||   /|__  || | | |
+[0m[0;34m| |__ | |_| || _ \ __| || |_| |
+[0m[38;5;93m|____||_____||___/|____||____/
+[0m[38;5;196mInstructions
+[0m[38;5;226mForward		: W		Backward	: S
+[0m[38;5;47mLeft		: A		Right		: D
+[0m[0;34mLook left	: ←		Look right	: →
+[0m[38;5;93mShow map	: Spacebar	Show FPS	: F
+[0m[0m
+==583225== 
+==583225== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==583225== 
+==583225== HEAP SUMMARY:
+==583225==     in use at exit: 0 bytes in 0 blocks
+==583225==   total heap usage: 1,430 allocs, 1,430 frees, 748,721 bytes allocated
+==583225== 
+==583225== All heap blocks were freed -- no leaks are possible
+==583225== 
+==583225== For lists of detected and suppressed errors, rerun with: -s
+==583225== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 1)
