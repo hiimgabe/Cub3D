@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:19:16 by gabe              #+#    #+#             */
-/*   Updated: 2024/11/09 10:54:19 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:10:51 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,13 @@ int	file_check(char *file)
 	int		fd;
 
 	i = 0;
+	if (ft_strncmp(&file[i], ".cub", 4))
+		return (error_exit(ERR_INVEXT, file), EXIT_FAILURE);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (error_exit(ERR_FILENTFD, NULL), EXIT_FAILURE);
 	while (i < ft_strlen(file) - 4)
 		i++;
-	if (ft_strncmp(&file[i], ".cub", 4))
-	{
-		close(fd);
-		return (error_exit(ERR_INVEXT, file), EXIT_FAILURE);
-	}
 	close(fd);
 	return (EXIT_SUCCESS);
 }
