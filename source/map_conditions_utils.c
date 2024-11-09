@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:44:42 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/31 17:40:31 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:39:42 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	top_bottom_walls(char *line, int line_nb)
 	i = -1;
 	(void)line_nb;
 	if (!line)
-		return (error_exit(ERR_EMPTYMAP, NULL), 0);
+		return (error_exit(ERR_INVMAPF, NULL), 0);
 	while (line[++i])
 	{
 		if (line[i] != '1' && invalid_space(i, line_nb))

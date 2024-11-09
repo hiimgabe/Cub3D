@@ -17,7 +17,7 @@ WE ./assets/textures/blue_stone.xpm
 
 		EA ./assets/textures/grey_stone.xpm
 
-						F 							220,      100, 0
+						F 							105,      105, 105
 C 225,30,			0
 
  111111111111111111111111

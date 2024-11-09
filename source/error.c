@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:04:55 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/30 20:50:05 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 11:43:47 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	error_exit(char *error, char *file)
 	ft_putstr_fd(error, 2);
 	if (file)
 	{
-		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd("\n", 2);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:34:26 by gabe              #+#    #+#             */
-/*   Updated: 2024/10/30 21:34:16 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 11:39:06 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	check_map(char **map)
 			&& (i == 0 || (int)i == game()->map->map_height))
 			error_exit("ERR_MAPWALLS", NULL);
 		if (map[i][0] == '\0')
-			error_exit(ERR_MAPWALLE, NULL);
+			error_exit(ERR_INVMAPF, NULL);
 		if (!is_surrounded(map, i))
-			error_exit(ERR_MAPSURR, NULL);
+			error_exit(ERR_INVMAPF, NULL);
 		if (only_walls(map[i]))
 			cnt++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabe <gabe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:01:43 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/10/25 11:53:11 by gabe             ###   ########.fr       */
+/*   Updated: 2024/11/09 11:39:22 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || argv[1][0] == '\0')
 	{
 		ft_strlen(argv[1]);
-		error_exit(ERR_NOMAP, NULL);
+		error_exit(ERR_INVMAPF, NULL);
 	}
 	if (file_check(argv[1]))
 		exit_free();

@@ -6,7 +6,7 @@
 /*   By: gamoreir <gamoreir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:47:52 by pmagalha          #+#    #+#             */
-/*   Updated: 2024/11/09 10:51:51 by gamoreir         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:41:15 by gamoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	textures_validation(char *map)
 	}
 	close(fd);
 	if (check_xpm() || check_colors())
-		return (error_exit(ERR_TXTCLRFMT, NULL), EXIT_FAILURE);
+		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	return (exit_value);
 }
 
@@ -45,7 +45,7 @@ static void	check_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error_exit(ERR_FILENTFD, file);
+		error_exit(ERR_INVMAPF, file);
 	close(fd);
 }
 
@@ -54,7 +54,7 @@ static void	check_elements(void)
 	if (!game()->map->no || !game()->map->so
 		|| !game()->map->we || !game()->map->ea
 		|| !game()->map->c || !game()->map->f)
-		error_exit(ERR_MISSINGTXT, NULL);
+		error_exit(ERR_INVMAPF, NULL);
 	check_file(game()->map->no);
 	check_file(game()->map->so);
 	check_file(game()->map->we);
@@ -81,9 +81,9 @@ static void	replace_mapspace(void)
 int	parse_data(char *argv)
 {
 	if (textures_validation(argv))
-		return (error_exit(ERR_TXTINV, NULL), EXIT_FAILURE);
+		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	if (valid_map(argv))
-		return (error_exit(ERR_MAPVALID, NULL), EXIT_FAILURE);
+		return (error_exit(ERR_INVMAPF, NULL), EXIT_FAILURE);
 	check_elements();
 	check_map(game()->map->layout);
 	replace_mapspace();
