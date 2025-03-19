@@ -1,8 +1,17 @@
 # Cub3D
 
+## Contents
+
+<ul style="list-style-type:disc">
+  <li><a href="#about">About</a></li>
+  <li><a href="#demo">Demo</a></li>
+  <li><a href="#norme">Norme</a></li>
+</ul>
+
 ## About
 
-Cub3D is a 42 project about rendering a 3D view from a 2D map using <a href="https://lodev.org/cgtutor/raycasting.html">Raycasting</a>.
+Cub3D is a 42 project about rendering a 3D view from a 2D map using <a href="https://lodev.org/cgtutor/raycasting.html">Raycasting</a>.<br>
+In addition to the 3D rendered view there's a minimap and a fps counter.
 
 ## Demo
 
