@@ -17,7 +17,7 @@ In addition to the 3D rendered view there's a minimap and a fps counter.
 ## Usage
 
 ```shell
-./Cub3D <map.cub>
+./cub3D <map.cub>
 ```
 
 ## Demo
